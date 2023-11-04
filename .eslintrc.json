@@ -1,0 +1,4 @@
+{
+	"extends": [],
+	"parser": "@typescript-eslint/parser"
+}

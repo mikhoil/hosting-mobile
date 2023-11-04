@@ -1,12 +1,32 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true,
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ]
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"allowJs": true,
+		"target": "es5",
+		"strict": true,
+		"resolveJsonModule": true,
+		"module": "esnext",
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules"
+			}
+		],
+		"moduleResolution": "node",
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/app-flat/*": ["./src/app-flat/*"],
+			"@/entities/*": ["./src/entities/*"],
+			"@/features/*": ["./src/features/*"],
+			"@/screens/*": ["./src/screens/*"],
+			"@/shared/*": ["./src/shared/*"],
+			"@/widgets/*": ["./src/widgets/*"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
+	"exclude": ["node_modules"]
 }

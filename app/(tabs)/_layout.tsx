@@ -1,55 +1,40 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
-
-import Colors from '../../constants/Colors';
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+import { useFetchServer } from '@/shared/queries/server'
+import { $serverHash } from '@/shared/store'
+import { MainHeader } from '@/widgets/header/ui/Header'
+import { TabBar } from '@/widgets/tabBar/ui/TabBar'
+import { useStore } from 'effector-react'
+import { Tabs } from 'expo-router'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+	const serverHash = useStore($serverHash)
+	const { data: server } = useFetchServer(serverHash)
+	return (
+		<Tabs
+			sceneContainerStyle={{ backgroundColor: '#232923' }}
+			tabBar={TabBar}
+			screenOptions={{
+				header: MainHeader,
+				title: server?.gameServerName,
+			}}
+		>
+			<Tabs.Screen
+				name="servers/index"
+				options={{
+					title: 'Мои сервера',
+				}}
+			/>
+			<Tabs.Screen
+				name="createServer"
+				options={{
+					title: 'Создать сервер',
+				}}
+			/>
+			<Tabs.Screen
+				name="profile"
+				options={{
+					title: 'Профиль',
+				}}
+			/>
+		</Tabs>
+	)
 }
