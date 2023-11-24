@@ -1,14 +1,10 @@
-// process.env.TAMAGUI_TARGET = 'native'
-
 module.exports = function (api) {
 	api.cache(true)
 	return {
 		presets: ['babel-preset-expo'],
 		plugins: [
-			'nativewind/babel',
 			'expo-router/babel',
-			// 'react-native-classname-to-style',
-			// ['react-native-platform-specific-extensions', { extensions: ['css'] }],
+			'nativewind/babel',
 			[
 				'module-resolver',
 				{
@@ -24,6 +20,7 @@ module.exports = function (api) {
 					extensions: ['.js', '.ts', '.jsx', '.tsx'],
 				},
 			],
+			'react-native-reanimated/plugin',
 		],
 	}
 }

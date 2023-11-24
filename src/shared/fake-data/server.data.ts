@@ -6,6 +6,7 @@ import image4 from '@/app-flat/assets/images/head4.webp'
 import {
 	IFileNode,
 	IServer,
+	IServerBackup,
 	IServerConsoleLine,
 	IServerConsoleLineType,
 	IServerCurrentUsageItem,
@@ -424,6 +425,30 @@ export const serverCurrentUsage: IServerCurrentUsageItem[] = [
 	{ label: 'Процессор', value: 58, maxValue: 100, color: 'purple', isPercent: true },
 	{ label: 'Оперативная память', value: 716, maxValue: 2500, color: 'blue', valueUnit: 'MB' },
 	{ label: 'Хранилище', value: 0.23, maxValue: 5, color: 'orange', valueUnit: 'GB' },
+]
+
+export const backups: IServerBackup[] = [
+	{
+		id: 0,
+		name: 'Алмазы в шахте',
+		author: 'ZeroProger',
+		datetime: '16.06.2023, 21:32:32',
+		size: '78,32',
+	},
+	{
+		id: 1,
+		name: 'Save in cave',
+		author: 'kirieshki',
+		datetime: '19.05.2023, 17:41:42',
+		size: '24,59',
+	},
+	{
+		id: 2,
+		name: 'На драконе края',
+		author: '4epenadjia',
+		datetime: '27.08.2023, 16:21:59',
+		size: '126,89',
+	},
 ]
 
 export const filesTree: IFileNode[] = [

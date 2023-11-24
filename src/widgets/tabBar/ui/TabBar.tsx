@@ -21,7 +21,14 @@ export function TabBar({ state, descriptors, navigation, insets }: BottomTabBarP
 			}}
 		>
 			{state.routes.map((route, i) => (
-				<TouchableOpacity key={route.key} onPress={() => navigation.navigate(route.name)}>
+				<TouchableOpacity
+					key={route.key}
+					onPress={() => {
+						if (Object.hasOwn(route.params || {}, 'serverHash') && route.name === 'servers')
+							navigation.goBack()
+						else navigation.navigate(route.name)
+					}}
+				>
 					{icons[i]}
 				</TouchableOpacity>
 			))}

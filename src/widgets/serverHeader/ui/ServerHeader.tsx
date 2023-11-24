@@ -11,8 +11,6 @@ export function ServerHeader() {
 	return (
 		<View
 			style={{
-				marginTop: 16,
-				marginHorizontal: 12,
 				backgroundColor: '#171C17',
 				padding: 8,
 				borderRadius: 6,

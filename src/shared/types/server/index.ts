@@ -81,3 +81,11 @@ export interface IFileNode {
 	name?: string
 	extension?: string
 }
+
+export interface IServerBackup {
+	id: number
+	name: string
+	datetime: string
+	author: string
+	size: string
+}

@@ -9,7 +9,7 @@ const Input = React.forwardRef<TextInput, TextInputProps>(
 			<TextInput
 				inputMode={inputMode}
 				className={cn(
-					'flex h-10 w-full border-[#e4e4e7] bg-[#e4e4e7] px-3 py-2 text-sm ring-offset-[#ffffff] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#71717a] focus-visible:outline-none focus-visible:border-[#16a34a] disabled:cursor-not-allowed disabled:opacity-50',
+					'flex border-[#e4e4e7] bg-[#e4e4e7] px-2 ring-offset-[#ffffff] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#71717a] focus-visible:outline-none focus-visible:border-[#16a34a] disabled:cursor-not-allowed disabled:opacity-50',
 					className
 				)}
 				ref={ref}
@@ -21,3 +21,4 @@ const Input = React.forwardRef<TextInput, TextInputProps>(
 Input.displayName = 'Input'
 
 export { Input }
+

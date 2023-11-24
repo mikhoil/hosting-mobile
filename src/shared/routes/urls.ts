@@ -1,10 +1,11 @@
 // import { searchModsBaseRequest } from '@/shared/config/mods'
 
+
 // import { ISearchModsQuery } from '../api/curse-forge'
 
 export const ServerUrls = {
 	server: {
-		root: (hash: string) => `/servers/${hash}`,
+		root: (hash: string) => `/(tabs)/servers/${hash}`,
 		overview: (hash: string) => {
 			return `${ServerUrls.server.root(hash)}/overview`
 		},

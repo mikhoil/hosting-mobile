@@ -11,7 +11,6 @@ function ItemWrapper({ server, children }: { server: IServer; children: React.Re
 			onTouchStart={() => {
 				setServerHash(server.gameServerHash)
 				router.push(`/(tabs)/servers/${server.gameServerHash}`)
-				console.log(server.gameServerHash, 'tap')
 			}}
 		>
 			{children}

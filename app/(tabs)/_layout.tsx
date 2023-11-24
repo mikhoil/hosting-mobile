@@ -1,24 +1,29 @@
-import { useFetchServer } from '@/shared/queries/server'
-import { $serverHash } from '@/shared/store'
-import { MainHeader } from '@/widgets/header/ui/Header'
-import { TabBar } from '@/widgets/tabBar/ui/TabBar'
-import { useStore } from 'effector-react'
+import { TabBar } from '@/widgets/tabBar'
+import { Image } from 'expo-image'
 import { Tabs } from 'expo-router'
 
 export default function TabLayout() {
-	const serverHash = useStore($serverHash)
-	const { data: server } = useFetchServer(serverHash)
 	return (
 		<Tabs
 			sceneContainerStyle={{ backgroundColor: '#232923' }}
 			tabBar={TabBar}
-			screenOptions={{
-				header: MainHeader,
-				title: server?.gameServerName,
-			}}
+			initialRouteName="servers"
+			screenOptions={({ route }) => ({
+				headerStyle: { backgroundColor: '#171C17' },
+				headerLeftContainerStyle: { marginRight: -32, padding: 16 },
+				headerTitleStyle: { color: '#ffffff' },
+				headerTitleAlign: 'center',
+				headerLeft: () => (
+					<Image
+						style={{ width: 32, height: 35 }}
+						source={require('/src/app-flat/assets/images/logo-green.png')}
+					/>
+				),
+				headerShown: !Object.hasOwn(route.params || {}, 'serverHash'),
+			})}
 		>
 			<Tabs.Screen
-				name="servers/index"
+				name="servers"
 				options={{
 					title: 'Мои сервера',
 				}}

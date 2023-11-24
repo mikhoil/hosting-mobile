@@ -56,7 +56,7 @@ export function CurrentUsage() {
 								</Text>
 							</View>
 						</View>
-						<Progress value={(item.value / item.maxValue) * 100} indicatorColor={item.color} />
+						<Progress value={item.value} maxValue={item.maxValue} progressColor={item.color} />
 					</View>
 				)}
 			/>

@@ -1,15 +1,7 @@
-import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogTitle,
-	AlertDialogTrigger,
-} from '@/shared/ui/alert-dialog'
+import { AlertDialog } from '@/shared/ui/alert-dialog'
 import { Button } from '@/shared/ui/button'
 import { MinusCircle } from '@tamagui/lucide-icons'
-import { Text } from 'react-native'
+import { useState } from 'react'
 import { useKickPlayerMutation } from '../queries'
 
 export function KickPlayer({ playerNickname }: { playerNickname: string }) {
@@ -18,21 +10,31 @@ export function KickPlayer({ playerNickname }: { playerNickname: string }) {
 	const handleKickPlayer = () => {
 		kickPlayerMutation.mutateAsync(playerNickname)
 	}
+
+	const [visible, setVisible] = useState(false)
+
 	return (
-		<AlertDialog native>
-			<AlertDialogTrigger asChild="except-style">
-				<Button variant="ghost" size="icon">
-					<MinusCircle color={'#807D7D'} />
-				</Button>
-			</AlertDialogTrigger>
-			<AlertDialogContent>
-				<AlertDialogTitle>Вы уверены?</AlertDialogTitle>
-				<AlertDialogDescription>
-					<Text>Вы собираетесь кикнуть игрока {playerNickname} с вашего сервера.</Text>
-				</AlertDialogDescription>
-				<AlertDialogCancel>Отменить</AlertDialogCancel>
-				<AlertDialogAction onPress={() => handleKickPlayer()}>Кикнуть</AlertDialogAction>
-			</AlertDialogContent>
-		</AlertDialog>
+		<>
+			<Button variant="ghost" size="icon" onPress={() => setVisible(true)}>
+				<MinusCircle color={'#807D7D'} />
+			</Button>
+			<AlertDialog
+				actions={[
+					{ label: 'Отмена', onPress: () => setVisible(false), color: 'yellow' },
+					{
+						label: 'Кикнуть',
+						onPress: () => {
+							handleKickPlayer()
+							setVisible(false)
+						},
+						color: 'red',
+					},
+				]}
+				title="Вы уверены?"
+				subTitle={`Вы собираетесь кикнуть игрока ${playerNickname} с вашего сервера`}
+				visible={visible}
+				onDismiss={() => setVisible(false)}
+			/>
+		</>
 	)
 }

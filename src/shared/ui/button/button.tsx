@@ -19,7 +19,7 @@ const buttonVariants = tv({
 			default: 'h-10 px-2 py-2',
 			sm: 'h-8 px-2',
 			lg: 'h-12 px-4',
-			icon: 'h-auto w-auto px-2 py-1',
+			icon: 'h-auto w-auto px-1 py-1',
 		},
 	},
 	defaultVariants: {
@@ -46,3 +46,4 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
 Button.displayName = 'Button'
 
 export { Button, buttonVariants }
+
