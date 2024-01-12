@@ -1,4 +1,4 @@
-import { Trash2, Undo2 } from '@tamagui/lucide-icons'
+import { Trash2, Undo2 } from 'lucide-react-native'
 
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'

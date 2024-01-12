@@ -6,6 +6,14 @@ module.exports = function (api) {
 			'expo-router/babel',
 			'nativewind/babel',
 			[
+				'module:react-native-dotenv',
+				{
+					envName: 'APP_ENV',
+					moduleName: '@env',
+					path: '.env',
+				},
+			],
+			[
 				'module-resolver',
 				{
 					root: ['.'],

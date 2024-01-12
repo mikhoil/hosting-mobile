@@ -6,7 +6,7 @@ const AlertDialog = React.forwardRef<
 	React.ElementRef<typeof Dialog>,
 	React.ComponentPropsWithoutRef<typeof Dialog> & {
 		title: string
-		subTitle: string
+		subTitle?: string
 		actions: ButtonProps[]
 		backgroundColor?: string
 		color?: string
@@ -44,3 +44,4 @@ const AlertDialog = React.forwardRef<
 )
 
 export { AlertDialog }
+

@@ -3,7 +3,7 @@ import { IServer } from '@/shared/types'
 import { router } from 'expo-router'
 import { StyleSheet, Text, View } from 'react-native'
 
-function ItemWrapper({ server, children }: { server: IServer; children: React.ReactNode }) {
+export function ListItem({ server }: { server: IServer }) {
 	return (
 		<View
 			style={styles.itemWrapper}
@@ -13,17 +13,7 @@ function ItemWrapper({ server, children }: { server: IServer; children: React.Re
 				router.push(`/(tabs)/servers/${server.gameServerHash}`)
 			}}
 		>
-			{children}
-		</View>
-	)
-}
-
-function ItemContent({ server }: { server: IServer }) {
-	return (
-		<>
-			<View>
-				<Text style={styles.serverName}>{server.gameServerName}</Text>
-			</View>
+			<Text style={styles.serverName}>{server.gameServerName}</Text>
 			<View
 				style={{
 					display: 'flex',
@@ -32,24 +22,12 @@ function ItemContent({ server }: { server: IServer }) {
 					justifyContent: 'space-between',
 				}}
 			>
-				<View>
-					<Text style={styles.serverIp}>{server.serverIp}</Text>
-				</View>
-				<View>
-					<Text style={{ ...styles.serverStatus, color: server.isOnline ? '#16a34a' : '#ef4444' }}>
-						{server.isOnline ? 'Онлайн' : 'Офлайн'}
-					</Text>
-				</View>
+				<Text style={styles.serverIp}>{server.serverIp}</Text>
+				<Text style={{ ...styles.serverStatus, color: server.isOnline ? '#16a34a' : '#ef4444' }}>
+					{server.isOnline ? 'Онлайн' : 'Офлайн'}
+				</Text>
 			</View>
-		</>
-	)
-}
-
-export function ListItem(props: { server: IServer }) {
-	return (
-		<ItemWrapper {...props}>
-			<ItemContent server={props.server} />
-		</ItemWrapper>
+		</View>
 	)
 }
 

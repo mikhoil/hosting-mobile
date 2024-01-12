@@ -1,14 +1,21 @@
+import { useAuth } from '@/entities/auth'
 import { TabBar } from '@/widgets/tabBar'
 import { Image } from 'expo-image'
-import { Tabs } from 'expo-router'
+import { Redirect, Tabs } from 'expo-router'
+import { Text } from 'react-native'
 
 export default function TabLayout() {
+	const { authToken, isTokenLoading } = useAuth()
+
+	if (isTokenLoading) return <Text>Loading...</Text>
+	if (!authToken) return <Redirect href={'/signIn'} />
 	return (
 		<Tabs
 			sceneContainerStyle={{ backgroundColor: '#232923' }}
 			tabBar={TabBar}
 			initialRouteName="servers"
 			screenOptions={({ route }) => ({
+				freezeOnBlur: true,
 				headerStyle: { backgroundColor: '#171C17' },
 				headerLeftContainerStyle: { marginRight: -32, padding: 16 },
 				headerTitleStyle: { color: '#ffffff' },

@@ -2,11 +2,11 @@ import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { DrawerToggleButton } from '@react-navigation/drawer'
-import { ChevronLeft } from '@tamagui/lucide-icons'
 import { useStore } from 'effector-react'
 import { useRouter } from 'expo-router'
 import { Drawer } from 'expo-router/drawer'
 import { useNavigation } from 'expo-router/src/useNavigation'
+import { ChevronLeft } from 'lucide-react-native'
 import { useEffect } from 'react'
 
 export default function ServerLayout() {
@@ -14,15 +14,23 @@ export default function ServerLayout() {
 	const navigation = useNavigation()
 	const serverHash = useStore($serverHash)
 	const { data: server } = useFetchServer(serverHash)
+
 	useEffect(() => {
 		navigation.addListener('beforeRemove', (e) => {
 			e.preventDefault()
 			router.push('/(tabs)/servers/')
 		})
+		return () =>
+			navigation.removeListener('beforeRemove', (e) => {
+				e.preventDefault()
+				router.push('/(tabs)/servers/')
+			})
 	}, [navigation])
+
 	return (
 		<Drawer
 			screenOptions={{
+				unmountOnBlur: true,
 				drawerContentStyle: { backgroundColor: '#171C17' },
 				drawerContentContainerStyle: { backgroundColor: '#171C17' },
 				drawerPosition: 'right',

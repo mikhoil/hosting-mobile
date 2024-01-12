@@ -1,5 +1,7 @@
 // import { searchModsBaseRequest } from '@/shared/config/mods'
 
+import { ISearchModsQuery } from '../api/curse-forge'
+import { searchModsBaseRequest } from '../config/mods'
 
 // import { ISearchModsQuery } from '../api/curse-forge'
 
@@ -71,20 +73,20 @@ export const ModUrls = {
 	relations: (serverHash: string, modId: number | string) => {
 		return `${ServerUrls.server.root(serverHash)}/mods/${modId}/relations`
 	},
-	// search: (serverHash: string, query?: ISearchModsQuery) => {
-	// 	const resultQuery: ISearchModsQuery = { ...searchModsBaseRequest, ...query }
-	// 	const resultQueryString = Object.entries(resultQuery)
-	// 		.filter((item) => item[1])
-	// 		.map(
-	// 			(item, index) =>
-	// 				`${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
-	// 					index !== Object.keys(resultQuery).length - 1 ? '&' : ''
-	// 				}`
-	// 		)
-	// 		.join('')
+	search: (serverHash: string, query?: ISearchModsQuery) => {
+		const resultQuery: ISearchModsQuery = { ...searchModsBaseRequest, ...query }
+		const resultQueryString = Object.entries(resultQuery)
+			.filter((item) => item[1])
+			.map(
+				(item, index) =>
+					`${index === 0 ? '?' : ''}${item[0]}=${item[1]}${
+						index !== Object.keys(resultQuery).length - 1 ? '&' : ''
+					}`
+			)
+			.join('')
 
-	// 	return `${ServerUrls.server.root(serverHash)}/mods/search${resultQueryString}`
-	// },
+		return `${ServerUrls.server.root(serverHash)}/mods/search${resultQueryString}`
+	},
 }
 
 export const AuthUrls = {

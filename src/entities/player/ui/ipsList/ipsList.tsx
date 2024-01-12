@@ -1,7 +1,7 @@
 import { IPlayerListItem } from '@/shared/api/common'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
-import { LocateFixed, Trash2 } from '@tamagui/lucide-icons'
+import { LocateFixed, Trash2 } from 'lucide-react-native'
 import { FlatList, Text, View } from 'react-native'
 
 export function IpsList({

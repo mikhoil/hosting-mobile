@@ -1,23 +1,18 @@
 import { MainProvider } from '@/app-flat/providers/MainProvider'
+import { useAuth } from '@/entities/auth'
 import { Rubik_300Light } from '@expo-google-fonts/rubik'
 import { useFonts } from 'expo-font'
-import { Stack } from 'expo-router'
+import { Stack, useRouter } from 'expo-router'
 import { withExpoSnack } from 'nativewind'
+import { useEffect } from 'react'
 import { TamaguiProvider } from 'tamagui'
 import appConfig from 'tamagui.config'
 
 export { ErrorBoundary } from 'expo-router'
 
-export const unstable_settings = {
-	// Ensure that reloading on `/modal` keeps a back button present.
-	initialRouteName: '(tabs)',
-}
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-// SplashScreen.preventAutoHideAsync()
-
 function RootLayout() {
 	const [fontsLoaded, fontError] = useFonts({ Rubik_300Light })
+
 	if (!fontsLoaded && !fontError) {
 		return null
 	}
@@ -25,12 +20,21 @@ function RootLayout() {
 	return (
 		<MainProvider>
 			<TamaguiProvider config={appConfig}>
-				<Stack screenOptions={{ statusBarStyle: 'dark' }}>
-					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-				</Stack>
+				<InitialLayout />
 			</TamaguiProvider>
 		</MainProvider>
 	)
+}
+
+function InitialLayout() {
+	const { authToken } = useAuth()
+	const router = useRouter()
+
+	useEffect(() => {
+		router.replace(authToken ? '/servers' : '/(auth)/signIn')
+	}, [authToken])
+
+	return <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }} />
 }
 
 export default withExpoSnack(RootLayout)

@@ -1,15 +1,16 @@
 import { BanPlayer } from '@/features/banPlayer'
 import { KickPlayer } from '@/features/kickPlayer'
+import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { useStore } from 'effector-react'
 import { Image } from 'expo-image'
-import { Link } from 'expo-router'
+import { Href, Link } from 'expo-router'
 import { FlatList, Text, View } from 'react-native'
 import { useFetchServerActivePlayers } from '../queries'
 
 export function ActivePlayers() {
 	const serverHash = useStore($serverHash)
-	const { data: activePlayers } = useFetchServerActivePlayers()
+	const { data: activePlayers } = useFetchServerActivePlayers(serverHash!)
 	const maxListLength = 3
 	return (
 		<View className="bg-[#171C17] rounded-[10px] p-[6px] pt-[2px] flex">
@@ -26,7 +27,10 @@ export function ActivePlayers() {
 				}}
 			>
 				<Text style={{ color: '#ffffff', fontWeight: '500', fontSize: 16 }}>Активные игроки</Text>
-				<Link style={{ color: '#ffffff' }} href={`/(tabs)/servers/${serverHash}/players`}>
+				<Link
+					style={{ color: '#ffffff' }}
+					href={ServerUrls.server.players(serverHash!) as Href<string>}
+				>
 					управлять
 				</Link>
 			</View>

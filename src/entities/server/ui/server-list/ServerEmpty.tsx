@@ -9,7 +9,7 @@ export function ServerEmpty() {
 				<Text>У вас пока нет активных серверов.</Text>
 			</View>
 			<View>
-				Cоздайте свой собственный сервер прямо сейчас, перейдя на страницу{' '}
+				<Text>Cоздайте свой собственный сервер прямо сейчас, перейдя на страницу </Text>
 				<Link href={'/createServer'} className="text-[#16a34a] pb-0.5">
 					<Text>создания сервера</Text>
 				</Link>

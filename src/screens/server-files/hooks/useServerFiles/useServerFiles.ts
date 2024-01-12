@@ -1,5 +1,4 @@
 import { useStore } from 'effector-react'
-// import { useRouter, useSearchParams } from ''
 import numeral from 'numeral'
 import { useEffect, useState } from 'react'
 
@@ -48,14 +47,12 @@ export function useServerFiles() {
 		} else {
 			const filterPath = path + '/'
 
-			return fileNodes.filter((node) => {
-				return (
+			return fileNodes.filter(
+				(node) =>
 					node.path === filterPath ||
 					(node.path.startsWith(filterPath) &&
-						(node.path === filterPath ||
-							node.path.split('/').length === filterPath.split('/').length))
-				)
-			})
+						node.path.split('/').length === filterPath.split('/').length)
+			)
 		}
 	}
 

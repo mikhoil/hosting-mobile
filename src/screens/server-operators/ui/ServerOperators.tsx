@@ -5,7 +5,7 @@ import { PlayersList } from '@/entities/player/ui/playersList'
 import { $serverHash } from '@/shared/store'
 
 import { ServerHeader } from '@/widgets/serverHeader'
-import { View } from 'tamagui'
+import { View } from 'react-native'
 import { useOperators } from '../queries'
 
 export function ServerOperators() {

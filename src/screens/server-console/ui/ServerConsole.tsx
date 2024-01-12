@@ -15,8 +15,6 @@ export function ServerConsole() {
 	const { data: serverConsole, isLoading } = useFetchServerConsole()
 
 	useEffect(() => {
-		console.log('scroll!')
-
 		linesRef?.current?.scrollToEnd({ animated: true })
 	}, [serverConsole])
 

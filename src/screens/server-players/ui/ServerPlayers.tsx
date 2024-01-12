@@ -1,6 +1,6 @@
 import { PlayersUnit } from '@/entities/player/ui/playersUnit'
 import { ServerHeader } from '@/widgets/serverHeader'
-import { LocateOff, UserCheck, UserCog, UserX } from '@tamagui/lucide-icons'
+import { LocateOff, UserCheck, UserCog, UserX } from 'lucide-react-native'
 import { Text, View } from 'react-native'
 
 export function ServerPlayers() {

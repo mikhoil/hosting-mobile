@@ -1,3 +1,4 @@
+import { ModsCart } from '@/features/modsCart'
 import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
@@ -8,6 +9,7 @@ import { Text, View } from 'react-native'
 export function ServerHeader() {
 	const serverHash = useStore($serverHash)
 	const { data: server } = useFetchServer(serverHash)
+
 	return (
 		<View
 			style={{
@@ -87,6 +89,7 @@ export function ServerHeader() {
 				<Button variant={server?.isOnline ? 'destructive' : 'primary'} size="icon">
 					<Text style={{ color: '#ffffff' }}>{server?.isOnline ? 'Остановить' : 'Запустить'}</Text>
 				</Button>
+				<ModsCart />
 			</View>
 		</View>
 	)

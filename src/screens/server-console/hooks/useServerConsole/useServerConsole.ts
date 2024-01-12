@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 
-import { FlatList, NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import { FlatList, NativeSyntheticEvent, TextInput, TextInputChangeEventData } from 'react-native'
 import { useSendCommandToServerConsoleMutation } from '../../queries'
 
 export function useServerConsole() {

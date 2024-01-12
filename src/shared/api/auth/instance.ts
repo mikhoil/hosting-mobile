@@ -1,17 +1,17 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
 
-import { API_SERVER_URL } from '@/app/config/api'
+import { API_SERVER_URL } from '@/app-flat/config/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { getLocalStorageData } from '@/shared/utils/localStorage'
-
-export const axiosAuth = () =>
-	axios.create({
+export const axiosAuth = async () => {
+	const token = await AsyncStorage.getItem('token')
+	return axios.create({
 		baseURL: `${API_SERVER_URL}/api/v2`,
 		headers: {
 			'Content-Type': 'application/json',
 			Accept: 'application/json',
-			'X-Auth-Token': Cookies.get('authToken') || getLocalStorageData('authToken'),
+			'X-Auth-Token': token,
 		},
 		timeout: 60000,
 	})
+}

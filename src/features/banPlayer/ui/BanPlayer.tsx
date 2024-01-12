@@ -1,6 +1,6 @@
 import { AlertDialog } from '@/shared/ui/alert-dialog'
 import { Button } from '@/shared/ui/button'
-import { Ban } from '@tamagui/lucide-icons'
+import { Ban } from 'lucide-react-native'
 import { useState } from 'react'
 import { useBanPlayerMutation } from '../queries'
 
