@@ -14,7 +14,7 @@ export function useServerConsole() {
 	const handleSend = (value: string) => {
 		if (value.trim().length === 0) return
 
-		sendCommandMutation.mutateAsync({ command: value })
+		sendCommandMutation.mutateAsync({ message: value })
 	}
 
 	const handleInput = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {

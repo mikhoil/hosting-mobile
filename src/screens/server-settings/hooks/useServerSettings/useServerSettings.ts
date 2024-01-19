@@ -1,9 +1,7 @@
 import { useStore } from 'effector-react'
 // import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-// import { CallBackProps } from 'react-joyride'
 
-// import { useJoyrideGuide } from '@/shared/lib/react-joyride/hooks'
 import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
 
@@ -14,8 +12,6 @@ export function useServerSettings() {
 	// const router = useRouter()
 
 	const serverHash = useStore($serverHash)
-
-	// const { functions } = useJoyrideGuide()
 
 	// const { handleFinishGuide } = functions
 
@@ -28,14 +24,6 @@ export function useServerSettings() {
 	const [localSettings, setLocalSettings] = useState(settings)
 
 	const [isSettingsChanged, setIsSettingsChanged] = useState(false)
-
-	// const joyrideCallback = ({ status }: CallBackProps) => {
-	// 	if (status === 'finished') {
-	// 		router.push(ServerUrls.server.overview(server?.gameServerHash!))
-
-	// 		handleFinishGuide()
-	// 	}
-	// }
 
 	const handleSaveSettings = () => {
 		//#TODO: переделать под бэк
@@ -64,7 +52,7 @@ export function useServerSettings() {
 			if (property.name == propertyName) {
 				return {
 					...property,
-					value: String(event.target),
+					value: event.nativeEvent.text,
 				}
 			}
 			return property
@@ -81,7 +69,7 @@ export function useServerSettings() {
 			if (property.name == propertyName) {
 				return {
 					...property,
-					value: String(event.target) || '0',
+					value: event.nativeEvent.text || '0',
 				}
 			}
 			return property
@@ -107,7 +95,6 @@ export function useServerSettings() {
 	return {
 		localSettings,
 		isSettingsChanged,
-		// joyrideCallback,
 		functions: {
 			handleSwitchChange,
 			handleTextChange,

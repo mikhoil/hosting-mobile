@@ -12,7 +12,7 @@ export function PluginsCompilation() {
 	const { data: plugins } = useFetchFilteredMods(popularPluginsRequest)
 
 	const viewAllLink = ModUrls.search(serverHash!, {
-		classId: CForgeModClassType.Mods,
+		classId: CForgeModClassType.BukkitPlugins,
 	})
 
 	return (

@@ -6,7 +6,6 @@ import { FileText, Folder, MoreHorizontal } from 'lucide-react-native'
 
 import { $serverHash } from '@/shared/store'
 import { IFileNode } from '@/shared/types'
-import { SkeletonList } from '@/shared/ui/skeleton'
 
 import { FileNodeDownload } from '@/features/folderNodeDownload'
 import { FileNodeRemove } from '@/features/folderNodeRemove'
@@ -27,11 +26,7 @@ export function FileNodesList({ fileNodes }: { fileNodes?: IFileNode[] }) {
 	const ref = useRef<React.ElementRef<typeof Popover>>(null!)
 
 	if (!fileNodes) {
-		return (
-			<View>
-				<SkeletonList count={12} height={50} />
-			</View>
-		)
+		return <></>
 	}
 
 	return (

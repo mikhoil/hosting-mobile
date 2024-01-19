@@ -17,7 +17,12 @@ export function SearchMods({ hideList = false }: { hideList?: boolean }) {
 
 	const { mods, searchTerm, showList, containerRef, functions } = useSearchMods(hideList)
 
-	const { handleSearch, handleClickOutside, handleInputFocus, resetSearch } = functions
+	const {
+		handleSearch,
+		//  handleClickOutside,
+		handleInputFocus,
+		resetSearch,
+	} = functions
 
 	return (
 		<View ref={containerRef}>
@@ -38,10 +43,10 @@ export function SearchMods({ hideList = false }: { hideList?: boolean }) {
 					value={searchTerm}
 					onChange={handleSearch}
 					onFocus={handleInputFocus}
-					style={{ flex: 1, color: '#cccccc', textDecorationLine: 'none' }}
+					style={{ flex: 1, color: '#cccccc', textDecorationLine: 'none', paddingLeft: 10 }}
 				/>
 				<Button onPress={resetSearch} variant="ghost" size="icon">
-					<X color={'#ccc'} size={'$1'} style={{ marginRight: 10 }} />
+					<X color={'#ccc'} size={'10'} style={{ marginRight: 10 }} />
 				</Button>
 				<Button
 					size="sm"
@@ -56,7 +61,7 @@ export function SearchMods({ hideList = false }: { hideList?: boolean }) {
 								: ModUrls.search(serverHash!)) as Href<string>
 						}
 					>
-						<Search size={20} />
+						<Search size={20} color="#000" />
 					</Link>
 				</Button>
 			</View>

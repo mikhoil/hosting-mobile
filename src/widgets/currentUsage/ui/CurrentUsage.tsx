@@ -1,12 +1,12 @@
 import { Progress } from '@/shared/ui/progress'
-import { Skeleton } from '@/shared/ui/skeleton'
+// import { Skeleton } from '@/shared/ui/skeleton'
 import { FlatList, Text, View } from 'react-native'
 import { useFetchServerCurrentUsage } from '../queries'
 
 export function CurrentUsage() {
 	const { data: currentUsage, isLoading } = useFetchServerCurrentUsage()
 
-	if (isLoading) return <Skeleton className="w-full h-[220px]" />
+	if (isLoading) return <></>
 
 	if (!currentUsage) return null
 

@@ -1,14 +1,28 @@
+import { useServerMainInfo } from '@/entities/server/model'
 import { ModsCart } from '@/features/modsCart'
+import { StartServer } from '@/features/startServer'
+import { StopServer } from '@/features/stopServer'
 import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
-import { Button } from '@/shared/ui/button'
-import { Bookmark, Globe, MoreHorizontal } from '@tamagui/lucide-icons'
 import { useStore } from 'effector-react'
+import { Bookmark, Globe, MoreHorizontal } from 'lucide-react-native'
 import { Text, View } from 'react-native'
 
 export function ServerHeader() {
 	const serverHash = useStore($serverHash)
-	const { data: server } = useFetchServer(serverHash)
+	const { data: server, isLoading } = useFetchServer(serverHash)
+	const { mainInfo } = useServerMainInfo()
+
+	const getServerFullAddress = () => {
+		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
+
+		const serverPort = server?.serverPorts.find((port) => port.port !== controllerPort?.port)
+
+		return `${server?.serverIp}:${serverPort?.port}`
+	}
+	console.log(serverHash)
+
+	if (!server || isLoading) return null
 
 	return (
 		<View
@@ -39,30 +53,38 @@ export function ServerHeader() {
 					}}
 				>
 					<Globe color={'#ffffff'} size={20} />
-					<Text style={{ color: '#ffffff', fontSize: 14 }}>{server?.serverIp}</Text>
+					<Text style={{ color: '#ffffff', fontSize: 14 }}>{getServerFullAddress()}</Text>
 				</View>
-				<View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+				<View
+					style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', columnGap: 15 }}
+				>
 					<View
 						style={{
 							display: 'flex',
 							flexDirection: 'row',
 							alignItems: 'center',
 							paddingRight: 3,
-							gap: 4,
+							gap: 10,
 						}}
 					>
 						<View
-							style={{
-								borderRadius: 100,
-								backgroundColor: server?.isOnline ? '#2BE927' : '#7f1d1d',
-								width: 12,
-								height: 12,
-							}}
-						/>
-						<Text style={{ color: server?.isOnline ? '#2BE927' : '#7f1d1d' }}>
-							{server?.isOnline ? 'Онлайн' : 'Офлайн'}
+							style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', columnGap: 3 }}
+						>
+							<View
+								style={{
+									borderRadius: 100,
+									backgroundColor: server?.isOnline ? '#2BE927' : '#7f1d1d',
+									width: 12,
+									height: 12,
+								}}
+							/>
+							<Text style={{ color: server?.isOnline ? '#2BE927' : '#7f1d1d' }}>
+								{server?.isOnline ? 'Онлайн' : 'Офлайн'}
+							</Text>
+						</View>
+						<Text style={{ color: '#ffffff' }}>
+							{server.isOnline ? `${mainInfo?.playersCount} / ${mainInfo?.maxPlayers}` : ''}
 						</Text>
-						<Text style={{ color: '#ffffff' }}>4 / 8</Text>
 					</View>
 					<MoreHorizontal color={'#ffffff'} />
 				</View>
@@ -84,12 +106,12 @@ export function ServerHeader() {
 					}}
 				>
 					<Bookmark color={'#ffffff'} size={20} />
-					<Text style={{ color: '#ffffff' }}>Vanila 1.20</Text>
+					<Text style={{ color: '#ffffff' }}>
+						{mainInfo?.software ?? 'Vanilla'} {mainInfo?.version}
+					</Text>
 				</View>
-				<Button variant={server?.isOnline ? 'destructive' : 'primary'} size="icon">
-					<Text style={{ color: '#ffffff' }}>{server?.isOnline ? 'Остановить' : 'Запустить'}</Text>
-				</Button>
 				<ModsCart />
+				{server?.isOnline ? <StopServer /> : <StartServer />}
 			</View>
 		</View>
 	)

@@ -12,6 +12,7 @@ import {
 	WorldsCompilation,
 } from '@/widgets/modsCompilation'
 
+import { CForgeModClassType, russianModClasses } from '@/shared/config/curse-forge'
 import { ModUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
 import { Popover } from '@/shared/ui/popover'
@@ -44,7 +45,7 @@ export function ServerMods() {
 								columnGap: 10,
 								padding: 15,
 							}}
-							renderItem={({ item: { categories, className, classId } }) => (
+							renderItem={({ item: { categories, classId } }) => (
 								<FlatList
 									ListHeaderComponent={
 										<Link
@@ -62,7 +63,9 @@ export function ServerMods() {
 													columnGap: 5,
 												}}
 											>
-												<Text style={{ color: '#ffffff', fontSize: 16 }}>{className}</Text>
+												<Text style={{ color: '#ffffff', fontSize: 16 }}>
+													{russianModClasses.get(CForgeModClassType[classId])}
+												</Text>
 												<ChevronRight size={16} color="#ffffff" />
 											</View>
 										</Link>

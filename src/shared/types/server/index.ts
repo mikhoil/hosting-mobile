@@ -40,21 +40,18 @@ export interface IServerProperty {
 }
 
 export interface IServerMainInfo {
-	label: string
-	value: string
-	otherInfo?: {
-		isOnline?: boolean
-		copyable?: boolean
-		isSoftware?: boolean
-		isVersion?: boolean
-		playersImages?: string[]
-	}
+	ip: string
+	software: string | null
+	version: string
+	playersCount: string
+	maxPlayers: string
+	map: string
 }
 
 export enum IServerConsoleLineType {
-	Error = 'ERROR',
-	Warning = 'WARNING',
-	Info = 'INFO',
+	Error = '/ERROR',
+	Warning = '/WARN',
+	Info = '/INFO',
 }
 
 export interface IServerConsoleLine {
@@ -80,12 +77,4 @@ export interface IFileNode {
 	size: number
 	name?: string
 	extension?: string
-}
-
-export interface IServerBackup {
-	id: number
-	name: string
-	datetime: string
-	author: string
-	size: string
 }

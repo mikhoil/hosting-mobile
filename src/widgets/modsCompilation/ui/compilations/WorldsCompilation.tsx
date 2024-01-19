@@ -12,7 +12,7 @@ export function WorldsCompilation() {
 	const { data: worlds } = useFetchFilteredMods(popularWorldsRequest)
 
 	const viewAllLink = ModUrls.search(serverHash!, {
-		classId: CForgeModClassType.Mods,
+		classId: CForgeModClassType.Worlds,
 	})
 
 	return (

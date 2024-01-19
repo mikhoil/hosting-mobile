@@ -1,19 +1,20 @@
 import { IMod } from '@/shared/api/curse-forge'
-import { $serverHash } from '@/shared/store'
 import { addModToCart } from '@/shared/store/mod'
 import { Button } from '@/shared/ui/button'
-import { useStore } from 'effector-react'
 import { PlusCircle } from 'lucide-react-native'
+import { Text, View } from 'react-native'
 
 export function AddModToCart({ mod }: { mod: IMod }) {
-	const serverHash = useStore($serverHash)
 	const handleAddModClick = () => {
-		addModToCart([serverHash!, mod])
+		addModToCart(mod)
 	}
 
 	return (
 		<Button variant="primary" size="sm" onPress={handleAddModClick}>
-			<PlusCircle size={14} color={'#ffffff'} />
+			<View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', columnGap: 20 }}>
+				<PlusCircle size={16} color={'#000'} />
+				<Text style={{ fontWeight: '700' }}>Добавить мод в корзину установки</Text>
+			</View>
 		</Button>
 	)
 }

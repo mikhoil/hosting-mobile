@@ -1,10 +1,11 @@
 import { useAuth } from '@/entities/auth'
 import { ServerUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
+import { Input } from '@/shared/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Href, useRouter } from 'expo-router'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { Text, TextInput, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { SignInFields, signInFormSchema } from '../../types'
 
 export function SignInForm() {
@@ -29,12 +30,20 @@ export function SignInForm() {
 	}
 
 	return (
-		<View>
+		<View style={{ padding: 20, display: 'flex', rowGap: 15 }}>
 			<Controller
 				control={control}
 				name="login"
 				render={({ field: { onBlur, onChange, value } }) => (
-					<TextInput
+					<Input
+						textAlign="center"
+						style={{
+							textAlign: 'center',
+							backgroundColor: '#4d4d4d',
+							borderRadius: 20,
+							color: '#ffffff',
+						}}
+						placeholderTextColor={'#cccccc'}
 						placeholder="Имя пользователя"
 						value={value}
 						onChangeText={onChange}
@@ -46,7 +55,15 @@ export function SignInForm() {
 				control={control}
 				name="password"
 				render={({ field: { value, onBlur, onChange } }) => (
-					<TextInput
+					<Input
+						textAlign="center"
+						style={{
+							textAlign: 'center',
+							backgroundColor: '#4d4d4d',
+							borderRadius: 20,
+							color: '#ffffff',
+						}}
+						placeholderTextColor={'#cccccc'}
 						placeholder="Пароль"
 						secureTextEntry
 						value={value}
@@ -55,9 +72,25 @@ export function SignInForm() {
 					/>
 				)}
 			/>
-			<Button variant="primary" onPress={handleSubmit(onFormSubmit)}>
-				<Text>Войти</Text>
-			</Button>
+			<View
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+				}}
+			>
+				<Button variant="primary" size="sm" onPress={handleSubmit(onFormSubmit)}>
+					<Text style={{ color: '#ffffff', fontWeight: 'bold' }}>Войти</Text>
+				</Button>
+				<Button
+					variant="secondary"
+					size="icon"
+					style={{ width: 90, borderRadius: 10 }}
+					onPress={() => router.push('/signUp')}
+				>
+					<Text>Регистрация</Text>
+				</Button>
+			</View>
 		</View>
 	)
 }

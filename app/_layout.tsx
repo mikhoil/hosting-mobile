@@ -5,8 +5,6 @@ import { useFonts } from 'expo-font'
 import { Stack, useRouter } from 'expo-router'
 import { withExpoSnack } from 'nativewind'
 import { useEffect } from 'react'
-import { TamaguiProvider } from 'tamagui'
-import appConfig from 'tamagui.config'
 
 export { ErrorBoundary } from 'expo-router'
 
@@ -19,9 +17,7 @@ function RootLayout() {
 
 	return (
 		<MainProvider>
-			<TamaguiProvider config={appConfig}>
-				<InitialLayout />
-			</TamaguiProvider>
+			<InitialLayout />
 		</MainProvider>
 	)
 }

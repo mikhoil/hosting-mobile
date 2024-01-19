@@ -4,7 +4,7 @@ import { UseStateHook, useAsyncState } from './useAsyncState'
 
 async function setStorageItemAsync(key: string, value: string | null) {
 	try {
-		if (value == null) {
+		if (value === null) {
 			await AsyncStorage.removeItem(key)
 		} else {
 			await AsyncStorage.setItem(key, value)
@@ -21,15 +21,20 @@ export function useStorageState<T>(key: string): UseStateHook<T> {
 	// Get
 	useEffect(() => {
 		AsyncStorage.getItem(key).then((value) => {
-			setState(JSON.parse(value!) as T)
+			setState(
+				typeof value === 'string' ? (value as T) : value === null ? null : (JSON.parse(value!) as T)
+			)
 		})
 	}, [key])
 
 	// Set
 	const setValue = useCallback(
-		(value: T | null) => {
+		async (value: T | null) => {
 			setState(value)
-			setStorageItemAsync(key, typeof value === 'string' ? value : JSON.stringify(value))
+			await setStorageItemAsync(
+				key,
+				typeof value === 'string' ? value : value === null ? null : JSON.stringify(value)
+			)
 		},
 		[key]
 	)

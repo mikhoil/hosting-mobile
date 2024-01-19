@@ -8,7 +8,7 @@ export function BanPlayer({ playerNickname }: { playerNickname: string }) {
 	const banPlayerMutation = useBanPlayerMutation()
 
 	const handleBanPlayer = () => {
-		banPlayerMutation.mutateAsync(playerNickname)
+		banPlayerMutation.mutateAsync({ playerNickname })
 	}
 
 	const [visible, setVisible] = useState(false)

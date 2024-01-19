@@ -1,5 +1,5 @@
-import { ChevronRight } from '@tamagui/lucide-icons'
 import { Href, Link } from 'expo-router'
+import { ChevronRight } from 'lucide-react-native'
 
 import { ModCard } from '@/entities/mod/ui/card'
 

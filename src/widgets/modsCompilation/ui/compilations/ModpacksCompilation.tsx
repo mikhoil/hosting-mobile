@@ -12,7 +12,7 @@ export function ModpacksCompilation() {
 	const { data: modpacks } = useFetchFilteredMods(popularModpacksRequest)
 
 	const viewAllLink = ModUrls.search(serverHash!, {
-		classId: CForgeModClassType.Mods,
+		classId: CForgeModClassType.Modpacks,
 	})
 
 	return (

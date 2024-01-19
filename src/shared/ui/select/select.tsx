@@ -1,6 +1,3 @@
-// import { ChevronDown } from '@tamagui/lucide-icons'
-// import * as SelectPrimitive from '@tamagui/select'
-
 // import { cn } from '@/shared/lib/utils'
 
 // const Select = SelectPrimitive.Select

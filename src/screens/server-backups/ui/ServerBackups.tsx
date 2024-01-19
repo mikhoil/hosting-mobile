@@ -35,23 +35,6 @@ export function ServerBackups() {
 				>
 					Управление резервными копиями
 				</Text>
-				{/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-						<Text>Автосохранение</Text>
-						<Switch value={isAutoCopy} onValueChange={handleIsAutoCopyChange} />
-						<View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-							<Text>каждые</Text>
-							<Input
-								inputMode="numeric"
-								keyboardType="numeric"
-								defaultValue={'0'}
-								onChange={handleAutoCopyPeriodChange}
-							/>
-							<Text>дней</Text>
-							<Button variant="primary" size="icon" onPress={handleSaveAutoCopyClick}>
-								<Save strokeWidth={1.75} size={28} />
-							</Button>
-						</View>
-					</View> */}
 			</View>
 			<View
 				style={{
@@ -63,10 +46,11 @@ export function ServerBackups() {
 				}}
 			>
 				<Input
-					value={backupName}
+					defaultValue={backupName}
 					onChange={handleBackupNameChange}
 					placeholder="Введите название резервной копии"
 					placeholderTextColor={'#686F6E'}
+					style={{ paddingHorizontal: 10, color: '#ccc' }}
 				/>
 				<Button
 					variant="primary"
@@ -140,7 +124,7 @@ export function ServerBackups() {
 							</View>
 							<View style={{ display: 'flex', flexDirection: 'row', columnGap: 6 }}>
 								<Button variant="primary" size="icon" onPress={handleRestoreBackupClick}>
-									<Undo2 size={20} />
+									<Undo2 size={20} color="#000" />
 								</Button>
 								<Button variant="destructive" size="icon" onPress={handleDeleteBackupClick}>
 									<Trash2 size={20} color={'#ffffff'} />

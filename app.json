@@ -43,6 +43,14 @@
         "cjs",
         "css"
       ]
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "63405918-2217-4545-a3c5-e18ea1f03db1"
+      }
     }
   }
 }

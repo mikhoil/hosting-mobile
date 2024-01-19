@@ -7,7 +7,7 @@ export function ListItem({ server }: { server: IServer }) {
 	return (
 		<View
 			style={styles.itemWrapper}
-			className="transition-colors"
+			// className="transition-colors"
 			onTouchStart={() => {
 				setServerHash(server.gameServerHash)
 				router.push(`/(tabs)/servers/${server.gameServerHash}`)

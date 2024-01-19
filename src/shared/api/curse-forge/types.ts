@@ -105,4 +105,21 @@ export interface IAuthor {
 	url: string
 }
 
+export interface IFile {
+	id: number
+	gameId: number
+	modId: number
+	isAvailable: boolean
+	displayName: string
+	fileDate: string
+	fileName: string
+	fileLength: number
+	downloadCount: number
+	gameVersions: string[]
+	downloadUrl: string
+	dependencies: string[]
+	isServerPack: boolean
+	serverPackFileId: null | number
+}
+
 export interface ISearchModsQuery extends Omit<SearchModsRequest, 'gameId'> {}

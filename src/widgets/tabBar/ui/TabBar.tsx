@@ -1,12 +1,12 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
-import { LayoutList, PlusCircle, UserCircle } from '@tamagui/lucide-icons'
+import { LayoutList, PlusCircle, UserCircle } from 'lucide-react-native'
 import { TouchableOpacity, View } from 'react-native'
 
 export function TabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {
 	const icons = [
-		<LayoutList color={'#ffffff'} size={'$3'} />,
-		<PlusCircle color={'#ffffff'} size={'$3'} />,
-		<UserCircle color={'#ffffff'} size={'$3'} />,
+		<LayoutList color={'#ffffff'} size={'34'} />,
+		<PlusCircle color={'#ffffff'} size={'34'} />,
+		<UserCircle color={'#ffffff'} size={'34'} />,
 	]
 	return (
 		<View

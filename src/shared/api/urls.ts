@@ -11,6 +11,8 @@ export const CurseForgeApiUrls = {
 
 	categories: () => 'categories',
 	groupedCategories: () => 'categories/grouped-by-class',
+
+	files: () => 'files/by-mod-id/',
 }
 
 export const AuthApiUrls = {
@@ -21,13 +23,17 @@ export const AuthApiUrls = {
 
 //#TODO: не забыть
 export const ServerApiUrls = {
-	create: () => '/server/create',
-	start: () => '/server/start',
-	stop: () => '/server/stop',
+	create: () => '/server/start',
+	start: () => '/servers/controller/start-server',
+	stop: () => '/servers/controller/stop-server',
 	update: () => '/server/update',
 	remove: () => '/server/remove',
 	server: (hash: string) => `/server/${hash}`,
 	userServers: () => '/servers/private-servers',
+	publicServers: () => '/servers/public-servers',
+	sendCommand: () => '/servers/controller/send-message',
+	getServerInfo: () => '/servers/controller/get-server-info',
+	getServerLogs: () => '/servers/controller/get-server-logs',
 }
 
 export const SubscriptionApiUrls = {}

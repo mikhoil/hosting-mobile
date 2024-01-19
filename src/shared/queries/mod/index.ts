@@ -26,7 +26,7 @@ export function useGroupedCategories() {
 		select: ({ data }) => data.data,
 	})
 }
-
+ 
 export function useGameVersions() {
 	return useQuery({
 		queryKey: [ReactQueryKeys.modsGameVersions],

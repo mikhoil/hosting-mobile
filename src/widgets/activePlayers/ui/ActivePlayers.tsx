@@ -1,17 +1,23 @@
+import { useServerMainInfo } from '@/entities/server/model'
 import { BanPlayer } from '@/features/banPlayer'
 import { KickPlayer } from '@/features/kickPlayer'
+import { useFetchServer } from '@/shared/queries/server'
 import { ServerUrls } from '@/shared/routes/urls'
 import { $serverHash } from '@/shared/store'
 import { useStore } from 'effector-react'
 import { Image } from 'expo-image'
 import { Href, Link } from 'expo-router'
 import { FlatList, Text, View } from 'react-native'
-import { useFetchServerActivePlayers } from '../queries'
 
 export function ActivePlayers() {
 	const serverHash = useStore($serverHash)
-	const { data: activePlayers } = useFetchServerActivePlayers(serverHash!)
+
+	const { onlinePlayers, isLoading } = useServerMainInfo()
+	const { data: server } = useFetchServer(serverHash)
+
 	const maxListLength = 3
+
+	if (isLoading || !server?.isOnline) return null
 	return (
 		<View className="bg-[#171C17] rounded-[10px] p-[6px] pt-[2px] flex">
 			<View
@@ -35,9 +41,8 @@ export function ActivePlayers() {
 				</Link>
 			</View>
 			<FlatList
-				data={activePlayers?.slice(0, maxListLength)}
+				data={onlinePlayers?.slice(0, maxListLength)}
 				contentContainerStyle={{ rowGap: 8 }}
-				keyExtractor={({ name }) => name}
 				ListEmptyComponent={
 					<View>
 						<Text className="text-[#ffffff]">Здесь пока нет игроков</Text>
@@ -57,11 +62,11 @@ export function ActivePlayers() {
 								source={require('/src/app-flat/assets/images/head1.webp')}
 								style={{ width: 32, height: 32 }}
 							/>
-							<Text className="text-[#ffffff]">{player.name}</Text>
+							<Text className="text-[#ffffff]">{player}</Text>
 						</View>
 						<View className="flex flex-row gap-x-2">
-							<KickPlayer playerNickname={player.name} />
-							<BanPlayer playerNickname={player.name} />
+							<KickPlayer playerNickname={player} />
+							<BanPlayer playerNickname={player} />
 						</View>
 					</View>
 				)}

@@ -16,6 +16,7 @@ export function useFetchServerConsole() {
 		queryKey: [ReactQueryKeys.serverConsole, serverHash],
 		queryFn: () => getServerConsole(serverHash!),
 		enabled: !!serverHash,
+		select: ({ data }) => data.Logs,
 		refetchInterval: serverConsolePollingInterval,
 	})
 }
@@ -25,10 +26,14 @@ export function useSendCommandToServerConsoleMutation() {
 	const serverHash = useStore($serverHash)
 
 	return useMutation({
-		mutationFn: ({ command }: IServerSendCommandToConsoleRequest) =>
-			sendCommandToServerConsole(serverHash!, command),
+		mutationFn: ({ message }: IServerSendCommandToConsoleRequest) =>
+			sendCommandToServerConsole(serverHash!, message),
 		onSettled: async (data, error) => {
-			await queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.serverConsole, serverHash] })
+			if (data?.data.success) {
+				await queryClient.invalidateQueries({
+					queryKey: [ReactQueryKeys.serverConsole, serverHash],
+				})
+			}
 		},
 	})
 }

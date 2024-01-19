@@ -1,4 +1,3 @@
-// import * as SliderPrimitive from '@tamagui/slider'
 import React from 'react'
 
 import { Slider } from 'react-native-ui-lib'

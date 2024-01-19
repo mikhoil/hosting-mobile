@@ -4,7 +4,6 @@ import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
 import { Switch } from '@/shared/ui/switch'
 
-import { SkeletonList } from '@/shared/ui/skeleton'
 import { ServerHeader } from '@/widgets/serverHeader'
 import { FlatList, NativeSyntheticEvent, Text, TextInputChangeEventData, View } from 'react-native'
 import { useServerSettings } from '../hooks'
@@ -15,7 +14,7 @@ export function ServerSettings() {
 	const { handleSwitchChange, handleTextChange, handleNumberChange, handleSaveSettings } = functions
 
 	return (
-		<View style={{ display: 'flex', padding: 12, rowGap: 10 }}>
+		<View style={{ display: 'flex', paddingHorizontal: 12, rowGap: 10 }}>
 			<ServerHeader />
 			<FlatList
 				ListHeaderComponent={
@@ -40,7 +39,7 @@ export function ServerSettings() {
 					</View>
 				}
 				contentContainerStyle={{ display: 'flex', rowGap: 10, paddingBottom: 100 }}
-				ListEmptyComponent={<SkeletonList count={18} height={80} className="bg-secondary" />}
+				ListEmptyComponent={<></>}
 				data={localSettings}
 				renderItem={({ item: property }) => (
 					<View
@@ -80,13 +79,14 @@ export function ServerSettings() {
 										borderRadius: 10,
 										color: '#ffffff',
 										maxWidth: 'auto',
+										paddingHorizontal: 5,
+										textAlign: 'center',
 									}}
 									onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) =>
 										handleNumberChange(e, property.name)
 									}
 									verticalAlign="top"
 									inputMode="numeric"
-									id={`settings-input-number-${property.name}`}
 								/>
 							)}
 							{property.type === ServerPropertyType.String && (
@@ -96,11 +96,11 @@ export function ServerSettings() {
 										backgroundColor: '#3D3D42',
 										borderRadius: 10,
 										color: '#ffffff',
+										paddingHorizontal: 5,
 									}}
 									onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) =>
 										handleTextChange(e, property.name)
 									}
-									id={`react-input-${property.name}`}
 								/>
 							)}
 						</View>

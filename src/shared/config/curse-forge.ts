@@ -36,3 +36,11 @@ export const modLoaders: ICForgeFilterOption[] = [
 	{ label: 'Forge', value: CForgeSoftwareType.Forge },
 	{ label: 'Fabric', value: CForgeSoftwareType.Fabric },
 ]
+
+export const russianModClasses = new Map<string, string>([
+	['Mods', 'Моды'],
+	['BukkitPlugins', 'Плагины'],
+	['ResourcePacks', 'Ресурспаки'],
+	['Modpacks', 'Сборки модов'],
+	['Worlds', 'Карты и миры'],
+])

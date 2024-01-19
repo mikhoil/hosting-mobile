@@ -31,7 +31,7 @@ export function UploadFile() {
 					setVisible(!!files?.length)
 				}}
 			>
-				<Upload size={18} />
+				<Upload size={18} color="#000" />
 				<Text style={{ fontWeight: '500', fontSize: 16 }}>Загрузить</Text>
 			</Button>
 			<AlertDialog

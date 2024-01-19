@@ -8,8 +8,6 @@ import { searchMods } from '../api'
 
 export const useSearchMods = () => {
 	const searchParams = useLocalSearchParams()
-	console.log(searchParams)
-
 	// const paramsObj = Object.fromEntries(searchParams)
 
 	return useQuery({

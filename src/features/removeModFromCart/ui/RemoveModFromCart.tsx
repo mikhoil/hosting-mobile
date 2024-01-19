@@ -1,18 +1,21 @@
-import { $serverHash } from '@/shared/store'
 import { removeModFromCart } from '@/shared/store/mod'
 import { Button } from '@/shared/ui/button'
-import { useStore } from 'effector-react'
 import { MinusCircle } from 'lucide-react-native'
+import { Text, View } from 'react-native'
 
 export function RemoveModFromCart({ modId }: { modId: number }) {
-	const serverHash = useStore($serverHash)
 	const handleRemoveModClick = () => {
-		removeModFromCart([serverHash!, modId])
+		removeModFromCart(modId)
 	}
 
 	return (
 		<Button variant="destructive" size="sm" onPress={handleRemoveModClick}>
-			<MinusCircle size={14} color={'#ffffff'} />
+			<View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', columnGap: 20 }}>
+				<MinusCircle size={16} color={'#ffffff'} />
+				<Text style={{ color: '#ffffff', fontWeight: '700' }}>
+					Удалить мод из корзины установки
+				</Text>
+			</View>
 		</Button>
 	)
 }

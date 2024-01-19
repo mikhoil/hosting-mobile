@@ -16,7 +16,6 @@ export function getModsCategories(classId: string | null | undefined) {
 }
 
 export function getGroupedCategories() {
-	console.log(axiosCurseForge.getUri())
 	return axiosCurseForge.get<{ data: ICategoryGroup[] }>(CurseForgeApiUrls.groupedCategories())
 }
 
