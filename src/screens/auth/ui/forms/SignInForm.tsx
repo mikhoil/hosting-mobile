@@ -91,6 +91,7 @@ export function SignInForm() {
 					<Text>Регистрация</Text>
 				</Button>
 			</View>
+			<Text style={{ color: '#ffffff' }}>server url: {process.env.EXPO_PUBLIC_SERVER_URL}</Text>
 		</View>
 	)
 }

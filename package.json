@@ -20,9 +20,6 @@
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.0.2",
-    "@tamagui/babel-plugin": "^1.74.21",
-    "@tamagui/config": "^1.74.21",
-    "@tamagui/lucide-icons": "^1.74.21",
     "@tanstack/react-query": "^4.36.1",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
@@ -61,7 +58,6 @@
     "react-native-web": "~0.19.6",
     "tailwind-merge": "^1.14.0",
     "tailwind-variants": "^0.1.16",
-    "tamagui": "^1.74.21",
     "zod": "^3.22.4"
   },
   "devDependencies": {
