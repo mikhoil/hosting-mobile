@@ -45,6 +45,7 @@ export interface IServerMainInfo {
 	version: string
 	playersCount: string
 	maxPlayers: string
+	game: string
 	map: string
 }
 
