@@ -1,56 +1,55 @@
 {
   "expo": {
-    "name": "hosting-mobile",
-    "slug": "hosting-mobile",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/app-flat/assets/images/logo-green.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./src/app-flat/assets/images/logo-green.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.anonymous.hostingmobile"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static"
-    },
-    "plugins": [
-      "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "tsconfigPaths": true
-    },
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": [
-        "js",
-        "jsx",
-        "cjs",
-        "css"
-      ]
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "63405918-2217-4545-a3c5-e18ea1f03db1"
-      }
-    }
-  }
+		"name": "hosting-mobile",
+		"slug": "hosting-mobile",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./src/app-flat/assets/images/logo-green.png",
+		"scheme": "myapp",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./src/app-flat/assets/images/logo-green.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"infoPlist": {
+				"NSAppTransportSecurity": [
+					{
+						"xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>"
+					}
+				]
+			}
+		},
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.anonymous.hostingmobile",
+			"permissions": ["android.permission.ACCESS_NETWORK_STATE"]
+		},
+		"web": {
+			"bundler": "metro",
+			"output": "static"
+		},
+		"plugins": ["expo-router"],
+		"experiments": {
+			"typedRoutes": true,
+			"tsconfigPaths": true
+		},
+		"packagerOpts": {
+			"config": "metro.config.js",
+			"sourceExts": ["js", "jsx", "cjs", "css"]
+		},
+		"extra": {
+			"router": {
+				"origin": false
+			},
+			"eas": {
+				"projectId": "63405918-2217-4545-a3c5-e18ea1f03db1"
+			}
+		}
+	}
 }
