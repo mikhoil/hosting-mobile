@@ -1,12 +1,11 @@
 import { useServerMainInfo } from '@/entities/server/model'
-import { ModsCart } from '@/features/modsCart'
 import { StartServer } from '@/features/startServer'
 import { StopServer } from '@/features/stopServer'
 import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
 import { Popover } from '@/shared/ui/popover'
 import { useStore } from 'effector-react'
-import { Bookmark, Globe, MoreHorizontal } from 'lucide-react-native'
+import { Bookmark, Gamepad2, Globe, MoreHorizontal } from 'lucide-react-native'
 import { useCallback, useRef } from 'react'
 import { Text, View } from 'react-native'
 
@@ -117,7 +116,20 @@ export function ServerHeader() {
 						{mainInfo?.software ?? 'Vanilla'} {mainInfo?.version}
 					</Text>
 				</View>
-				<ModsCart />
+				<View
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						alignItems: 'center',
+						gap: 4,
+					}}
+				>
+					<Gamepad2 color={'#ffffff'} size={20} />
+					<Text style={{ color: '#ffffff', textTransform: 'capitalize' }}>
+						{mainInfo?.game ?? 'Minecraft'}
+					</Text>
+				</View>
+
 				{server?.isOnline ? <StopServer /> : <StartServer />}
 			</View>
 		</View>

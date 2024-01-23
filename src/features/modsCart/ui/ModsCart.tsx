@@ -34,7 +34,11 @@ export function ModsCart() {
 
 	return (
 		<>
-			<Button variant="ghost" onPress={() => setVisible(true)}>
+			<Button
+				variant="ghost"
+				onPress={() => setVisible(true)}
+				style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+			>
 				<Package size={16} color={'#ffffff'} />
 				<Text style={{ color: '#ffffff' }}>Корзина модов</Text>
 			</Button>

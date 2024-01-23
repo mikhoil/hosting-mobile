@@ -25,7 +25,7 @@ export function SearchMods({ hideList = false }: { hideList?: boolean }) {
 	} = functions
 
 	return (
-		<View ref={containerRef}>
+		<View ref={containerRef} style={{ flexGrow: 1, flexShrink: 0, flexBasis: 'auto' }}>
 			<View
 				style={{
 					display: 'flex',
@@ -43,7 +43,12 @@ export function SearchMods({ hideList = false }: { hideList?: boolean }) {
 					value={searchTerm}
 					onChange={handleSearch}
 					onFocus={handleInputFocus}
-					style={{ flex: 1, color: '#cccccc', textDecorationLine: 'none', paddingLeft: 10 }}
+					style={{
+						flex: 1,
+						color: '#cccccc',
+						textDecorationLine: 'none',
+						paddingLeft: 10,
+					}}
 				/>
 				<Button onPress={resetSearch} variant="ghost" size="icon">
 					<X color={'#ccc'} size={'10'} style={{ marginRight: 10 }} />
