@@ -12,9 +12,9 @@ export function useKickPlayerMutation() {
 	return useMutation({
 		mutationFn: ({ playerNickname }: { playerNickname: string }) =>
 			kickPlayer(serverHash!, playerNickname),
-		onSettled: (data, error) => {
+		onSettled: async (data, error) => {
 			if (data?.data.success) {
-				queryClient.invalidateQueries({
+				await queryClient.invalidateQueries({
 					queryKey: [ReactQueryKeys.serverMainInfo, serverHash],
 				})
 			}

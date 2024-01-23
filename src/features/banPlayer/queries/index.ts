@@ -12,10 +12,10 @@ export function useBanPlayerMutation() {
 	return useMutation({
 		mutationFn: ({ playerNickname }: { playerNickname: string }) =>
 			banPlayer(serverHash!, playerNickname),
-		onSettled: (data, error) => {
+		onSettled: async (data, error) => {
 			if (data?.data.success) {
-				queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.serverMainInfo, serverHash] })
-				queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.bannedPlayers, serverHash] })
+				await queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.serverMainInfo, serverHash] })
+				await queryClient.invalidateQueries({ queryKey: [ReactQueryKeys.bannedPlayers, serverHash] })
 			}
 		},
 	})

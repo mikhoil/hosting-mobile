@@ -4,8 +4,10 @@ import { StartServer } from '@/features/startServer'
 import { StopServer } from '@/features/stopServer'
 import { useFetchServer } from '@/shared/queries/server'
 import { $serverHash } from '@/shared/store'
+import { Popover } from '@/shared/ui/popover'
 import { useStore } from 'effector-react'
 import { Bookmark, Globe, MoreHorizontal } from 'lucide-react-native'
+import { useCallback, useRef } from 'react'
 import { Text, View } from 'react-native'
 
 export function ServerHeader() {
@@ -13,13 +15,16 @@ export function ServerHeader() {
 	const { data: server, isLoading } = useFetchServer(serverHash)
 	const { mainInfo } = useServerMainInfo()
 
-	const getServerFullAddress = () => {
+	const getServerFullAddress = useCallback(() => {
 		const controllerPort = server?.serverPorts.find((port) => port.portKind === 'controller')
 
 		const serverPort = server?.serverPorts.find((port) => port.port !== controllerPort?.port)
 
 		return `${server?.serverIp}:${serverPort?.port}`
-	}
+	}, [server])
+
+	const ref = useRef<React.ElementRef<typeof Popover>>(null!)
+
 	console.log(serverHash)
 
 	if (!server || isLoading) return null
@@ -64,7 +69,7 @@ export function ServerHeader() {
 							flexDirection: 'row',
 							alignItems: 'center',
 							paddingRight: 3,
-							gap: 10,
+							gap: 30,
 						}}
 					>
 						<View
@@ -83,7 +88,9 @@ export function ServerHeader() {
 							</Text>
 						</View>
 						<Text style={{ color: '#ffffff' }}>
-							{server.isOnline ? `${mainInfo?.playersCount} / ${mainInfo?.maxPlayers}` : ''}
+							{server.isOnline && mainInfo
+								? `${mainInfo?.playersCount} / ${mainInfo?.maxPlayers}`
+								: ''}
 						</Text>
 					</View>
 					<MoreHorizontal color={'#ffffff'} />

@@ -22,7 +22,7 @@ export function useStorageState<T>(key: string): UseStateHook<T> {
 	useEffect(() => {
 		AsyncStorage.getItem(key).then((value) => {
 			setState(
-				typeof value === 'string' ? (value as T) : value === null ? null : (JSON.parse(value!) as T)
+				value === null ? null : value[0] === '{' ? (JSON.parse(value) as T) : value as T
 			)
 		})
 	}, [key])

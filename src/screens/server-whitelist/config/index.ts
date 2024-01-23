@@ -1,0 +1,1 @@
+export const pollingWhitelistInterval = 5000

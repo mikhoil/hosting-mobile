@@ -19,7 +19,7 @@ export function ServerBannedIps() {
 			<IpsList
 				title="Заблокированные IP-адреса"
 				isLoading={isLoading}
-				ips={bannedIps}
+				ips={bannedIps?.content}
 				addDataPlaceholder={'Введите IP или никнейм игрока'}
 			/>
 		</View>

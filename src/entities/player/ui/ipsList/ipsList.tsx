@@ -53,7 +53,9 @@ export function IpsList({
 							</Button>
 						</View>
 					)}
-					ListEmptyComponent={<Text>Пока нет заблокированных IP-адресов</Text>}
+					ListEmptyComponent={
+						<Text style={{ color: '#cccccc' }}>Пока нет заблокированных IP-адресов</Text>
+					}
 				/>
 				<View
 					style={{

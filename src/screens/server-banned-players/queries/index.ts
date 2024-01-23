@@ -8,6 +8,8 @@ export function useBannedPlayers(gameServerHash: string) {
 	const { data: bannedPlayers, isLoading } = useQuery({
 		queryKey: [ReactQueryKeys.bannedPlayers, gameServerHash],
 		queryFn: () => getBannedPlayers(gameServerHash),
+		// select: ({ data }) => data,
+		// refetchInterval: pollingBannedPlayersInterval
 	})
 
 	return { bannedPlayers, isLoading }

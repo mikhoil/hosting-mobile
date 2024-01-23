@@ -9,7 +9,7 @@ export const ServerUrls = {
 	server: {
 		root: (hash: string) => `/(tabs)/servers/${hash}`,
 		overview: (hash: string) => {
-			return `${ServerUrls.server.root(hash)}/overview`
+			return `${ServerUrls.server.root(hash)}`
 		},
 		players: (hash: string, category?: string) => {
 			return `${ServerUrls.server.root(hash)}/players${category ? `/${category}` : ''}`
@@ -33,27 +33,16 @@ export const ServerUrls = {
 		settings: (hash: string) => {
 			return `${ServerUrls.server.root(hash)}/settings`
 		},
-
-		software: (hash: string) => {
-			return `${ServerUrls.server.root(hash)}/software`
-		},
-
-		versions: (hash: string, core: string) => ServerUrls.server.software(hash) + '/' + core,
-
-		version: (hash: string, core: string, version: string) =>
-			ServerUrls.server.versions(hash, core) + '/' + version,
 	},
 
-	servers: (query?: string) => `/servers${query ? `?${query}` : ''}`,
+	servers: () => '/servers',
 
-	publicServers: (query?: string) => `/servers/public${query ? `?${query}` : ''}`,
-
-	createServer(query?: string) {
-		return `/servers/create${query ? `?${query}` : ''}`
+	createServer() {
+		return '/servers/create-server'
 	},
 
-	testServer() {
-		return `/servers/test`
+	profile() {
+		return '/servers/profile'
 	},
 }
 

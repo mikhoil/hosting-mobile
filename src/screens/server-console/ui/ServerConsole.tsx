@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui/button'
 import { useStore } from 'effector-react'
 import { CornerDownLeft } from 'lucide-react-native'
 import { useEffect } from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ScrollView, Text, View } from 'react-native'
 import { useServerConsole } from '../hooks'
 import { useFetchServerConsole } from '../queries'
 
@@ -23,9 +23,7 @@ export function ServerConsole() {
 		linesRef?.current?.scrollToEnd({ animated: true })
 	}, [serverConsole])
 
-	if (!server || isLoading) return <></>
-
-	if (!serverConsole || !server.isOnline)
+	if (!serverConsole || !server?.isOnline)
 		return (
 			<View>
 				<Text style={{ color: '#ffffff' }}>Здесь пока пусто</Text>
@@ -34,14 +32,14 @@ export function ServerConsole() {
 		)
 
 	return (
-		<View style={{ display: 'flex', padding: 12, rowGap: 12, paddingBottom: 100 }}>
+		<View style={{ display: 'flex', padding: 12, rowGap: 12, paddingBottom: 0 }}>
 			{!serverConsole || !server.isOnline ? (
-				<View>
+				<ScrollView>
 					<Text style={{ color: '#ffffff' }}>Здесь пока пусто</Text>
 					<Text style={{ color: '#ffffff' }}>Запустите сервер для просмотра логов</Text>
-				</View>
+				</ScrollView>
 			) : (
-				<View
+				<ScrollView
 					style={{
 						backgroundColor: '#171C17',
 						paddingHorizontal: 4,
@@ -83,7 +81,7 @@ export function ServerConsole() {
 													? '#7F1D1D'
 													: line!.Record.indexOf(IServerConsoleLineType.Warning) !== -1
 													? '#C68D2A'
-													: 'inherit',
+													: '#171C17',
 											color: '#ffffff',
 										}}
 									>
@@ -132,18 +130,8 @@ export function ServerConsole() {
 							</Button>
 						</View>
 					</View>
-				</View>
+				</ScrollView>
 			)}
 		</View>
 	)
 }
-
-const lineStyle = StyleSheet.create({
-	ERROR: {
-		backgroundColor: '#7F1D1D',
-	},
-	WARNING: {
-		backgroundColor: '#C68D2A',
-	},
-	INFO: {},
-})

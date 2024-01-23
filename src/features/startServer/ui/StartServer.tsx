@@ -8,10 +8,10 @@ import { useStartServerMutation } from '../model'
 export function StartServer() {
 	const serverHash = useStore($serverHash)
 
-	const { isLoading, mutateAsync } = useStartServerMutation()
+	const { isLoading, mutate } = useStartServerMutation()
 
 	const handleClick = () => {
-		mutateAsync({ gameServerHash: serverHash! })
+		mutate({ gameServerHash: serverHash! })
 	}
 
 	return (

@@ -8,10 +8,10 @@ import { useStopServerMutation } from '../model'
 export function StopServer() {
 	const serverHash = useStore($serverHash)
 
-	const { isLoading, mutateAsync } = useStopServerMutation()
+	const { isLoading, mutate } = useStopServerMutation()
 
 	const handleClick = () => {
-		mutateAsync({ gameServerHash: serverHash! })
+		mutate({ gameServerHash: serverHash! })
 	}
 
 	return (

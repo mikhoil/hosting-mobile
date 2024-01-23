@@ -11,13 +11,13 @@ import { FlatList, Text, View } from 'react-native'
 
 export function ActivePlayers() {
 	const serverHash = useStore($serverHash)
-
-	const { onlinePlayers, isLoading } = useServerMainInfo()
 	const { data: server } = useFetchServer(serverHash)
+	const { onlinePlayers, isLoading, mainInfo } = useServerMainInfo()
 
 	const maxListLength = 3
 
-	if (isLoading || !server?.isOnline) return null
+	if (isLoading || !mainInfo || !server?.isOnline) return null
+
 	return (
 		<View className="bg-[#171C17] rounded-[10px] p-[6px] pt-[2px] flex">
 			<View

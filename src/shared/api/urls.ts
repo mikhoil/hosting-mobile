@@ -34,6 +34,8 @@ export const ServerApiUrls = {
 	sendCommand: () => '/servers/controller/send-message',
 	getServerInfo: () => '/servers/controller/get-server-info',
 	getServerLogs: () => '/servers/controller/get-server-logs',
+	listDirectory: () => '/files/list-directory',
+	getFileContent: () => '/files/get-file-content'
 }
 
 export const SubscriptionApiUrls = {}

@@ -22,7 +22,7 @@ export function useServerFiles() {
 
 	useEffect(() => {
 		if (fileNodes) {
-			const fileNode = fileNodes.find((f) => f.path === path)
+			const fileNode = fileNodes.files.find((f) => f.path === path)
 
 			if (fileNode && fileNode.type === 'file') {
 				setActiveFilePath(fileNode.path)
@@ -43,11 +43,11 @@ export function useServerFiles() {
 		}
 
 		if (path === '') {
-			return fileNodes.filter((node) => node.path.split('/').length === 1)
+			return fileNodes.files.filter((node) => node.path.split('/').length === 1)
 		} else {
 			const filterPath = path + '/'
 
-			return fileNodes.filter(
+			return fileNodes.files.filter(
 				(node) =>
 					node.path === filterPath ||
 					(node.path.startsWith(filterPath) &&

@@ -15,7 +15,7 @@ export function ServerWhitelist() {
 				addDataPlaceholder="Введите никнейм игрока"
 				title="Белый список"
 				isLoading={isLoading}
-				players={whitelist}
+				players={whitelist?.content}
 			/>
 		</View>
 	)

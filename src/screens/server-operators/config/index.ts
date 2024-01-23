@@ -1,0 +1,1 @@
+export const pollingOperatorsInterval = 5000

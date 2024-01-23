@@ -11,20 +11,22 @@ export function useFetchServerFiles() {
 
 	return useQuery({
 		queryKey: [ReactQueryKeys.serverFiles, serverHash],
-		queryFn: () => getServerFiles(serverHash),
+		queryFn: () => getServerFiles(serverHash!),
+		select: ({ data }) => data,
 		enabled: !!serverHash,
 	})
 }
 
 export function useFetchServerFileContent(
-	path: string = '',
+	path: string,
 	options: Omit<UseQueryOptions, 'queryKey' | 'queryFn'>
 ) {
 	const serverHash = useStore($serverHash)
 
 	return useQuery({
 		queryKey: [ReactQueryKeys.serverFileContent, serverHash, path],
-		queryFn: () => getServerFileContent(serverHash, path),
+		queryFn: () => getServerFileContent(serverHash!, path),
+		select: ({ data }) => data,
 		enabled: options.enabled,
 	})
 }

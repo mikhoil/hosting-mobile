@@ -8,7 +8,7 @@ import { Button } from '@/shared/ui/button'
 import { useServerFiles } from '../hooks'
 
 import { ServerHeader } from '@/widgets/serverHeader'
-import { Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { FilesBreadcrumbs } from './ServerBreadCrumbs'
 import { FileNodesList } from './ServerNodesList'
 
@@ -18,7 +18,7 @@ export function ServerFiles() {
 	const { handleGoHome } = functions
 
 	return (
-		<View style={{ display: 'flex', padding: 12, rowGap: 10 }}>
+		<View style={{ display: 'flex', padding: 12, rowGap: 10, paddingBottom: 100 }}>
 			<ServerHeader />
 			<View
 				style={{
@@ -54,7 +54,7 @@ export function ServerFiles() {
 					<Text style={{ fontSize: 20, color: '#ffffff' }}>~ /</Text>
 				</View>
 				<FilesBreadcrumbs path={path} />
-				{(!fileContent || fileNodesByPath) && (
+				{(!fileContent?.content || fileNodesByPath) && (
 					<View
 						style={{
 							display: 'flex',
@@ -68,9 +68,11 @@ export function ServerFiles() {
 					</View>
 				)}
 			</View>
-			{fileContent && !fileNodesByPath && (
-				<Text style={{ color: '#ffffff' }}>Контент: {fileContent}</Text>
-			)}
+			<ScrollView>
+				{fileContent?.content && !fileNodesByPath && (
+					<Text style={{ color: '#ffffff' }}>{fileContent.content}</Text>
+				)}
+			</ScrollView>
 			{fileNodesByPath && <FileNodesList fileNodes={fileNodesByPath} />}
 		</View>
 	)

@@ -58,7 +58,11 @@ export function PlayersList({
 							</Button>
 						</View>
 					)}
-					ListEmptyComponent={<Text>В данной категории пока нет добавленных игроков</Text>}
+					ListEmptyComponent={
+						<Text style={{ color: '#cccccc' }}>
+							В данной категории пока нет добавленных игроков
+						</Text>
+					}
 				/>
 				<View
 					style={{

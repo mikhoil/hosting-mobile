@@ -6,17 +6,20 @@ import { IServerSendCommandToConsoleRequest } from '@/entities/server/types/requ
 import { ReactQueryKeys } from '@/shared/lib/react-query'
 import { $serverHash } from '@/shared/store'
 
+import { useFetchServer } from '@/shared/queries/server'
 import { getServerConsole, sendCommandToServerConsole } from '../api'
 import { serverConsolePollingInterval } from '../config'
 
 export function useFetchServerConsole() {
 	const serverHash = useStore($serverHash)
+	const { data: server } = useFetchServer(serverHash)
 
 	return useQuery({
 		queryKey: [ReactQueryKeys.serverConsole, serverHash],
 		queryFn: () => getServerConsole(serverHash!),
-		enabled: !!serverHash,
-		select: ({ data }) => data.Logs,
+		enabled: !!serverHash && server !== undefined && server.isOnline,
+		select: (data) => data.data.Logs,
+		retry: 3,
 		refetchInterval: serverConsolePollingInterval,
 	})
 }

@@ -14,7 +14,7 @@ export function ServerSettings() {
 	const { handleSwitchChange, handleTextChange, handleNumberChange, handleSaveSettings } = functions
 
 	return (
-		<View style={{ display: 'flex', paddingHorizontal: 12, rowGap: 10 }}>
+		<View style={{ display: 'flex', padding: 12, rowGap: 10 }}>
 			<ServerHeader />
 			<FlatList
 				ListHeaderComponent={

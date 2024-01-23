@@ -13,9 +13,9 @@ export function useFetchServerMainInfo() {
 	const { data: server } = useFetchServer(serverHash)
 
 	return useQuery({
-		queryKey: [ReactQueryKeys.serverMainInfo, serverHash],
+		queryKey: [ReactQueryKeys.serverMainInfo, ReactQueryKeys.server, serverHash],
 		queryFn: () => getServerMainInfo({ gameServerHash: serverHash!, postSystem: 'query' }),
-		enabled: !!serverHash && server !== undefined && server.isOnline,
+		enabled: !!serverHash && !!server && server.isOnline,
 		refetchInterval: serverMainInfoPollingInterval,
 	})
 }

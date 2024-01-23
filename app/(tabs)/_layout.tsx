@@ -9,13 +9,15 @@ export default function TabLayout() {
 
 	if (isTokenLoading) return <Text>Loading...</Text>
 	if (!authToken) return <Redirect href={'/signIn'} />
+
 	return (
 		<Tabs
+			backBehavior="history"
 			sceneContainerStyle={{ backgroundColor: '#232923' }}
 			tabBar={TabBar}
 			initialRouteName="servers"
 			screenOptions={({ route }) => ({
-				freezeOnBlur: true,
+				unmountOnBlur: true,
 				headerStyle: { backgroundColor: '#171C17' },
 				headerLeftContainerStyle: { marginRight: -32, padding: 16 },
 				headerTitleStyle: { color: '#ffffff' },

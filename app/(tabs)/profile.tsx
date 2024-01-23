@@ -5,7 +5,7 @@ import { Text, View } from 'react-native'
 
 export default function ProfileScreen() {
 	const { user, logout, authToken } = useAuth()
-	console.log(authToken)
+	console.log(authToken, user)
 
 	return (
 		<View

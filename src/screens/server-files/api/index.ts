@@ -1,12 +1,16 @@
-import { filesTree as fileNodes } from '@/shared/fake-data/server.data'
+import { axiosAuth } from '@/shared/api/auth';
+import { ServerApiUrls } from '@/shared/api/urls';
+import { IFileNode } from '@/shared/types';
 
-export function getServerFiles(serverHash?: string | null, path: string = '') {
-	//return axiosAuth().post(ServerApiUrls.files(), { serverHash, path })
-	return fileNodes.sort((a, b) => a.name!.localeCompare(b.name!))
+export async function getServerFiles(gameServerHash: string, path: string = '/usr/local/server') {
+	const instance = await axiosAuth()
+	return await instance.post<{ files: IFileNode[] }>(ServerApiUrls.listDirectory(), { gameServerHash, path })
+	// return fileNodes.sort((a, b) => a.name!.localeCompare(b.name!))
 }
 
-export function getServerFileContent(serverHash?: string | null, path: string = '') {
-	return `Контент файла по пути ${path}. Пришел с бэка`
+export async function getServerFileContent(gameServerHash: string, path: string) {
+	const instance = await axiosAuth()
+	return await instance.post<{ content: string, success: boolean, error: string }>(ServerApiUrls.getFileContent(), { gameServerHash, path })
 }
 
 // export function getNodeFiles(path: string): IFileNode[] {

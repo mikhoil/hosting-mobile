@@ -1,6 +1,4 @@
-import { Button } from '@/shared/ui/button'
 import * as FileSystem from 'expo-file-system'
-import { Download } from 'lucide-react-native'
 import { FlatList, Text, View } from 'react-native'
 import { useFetchModFiles } from '../queries'
 
@@ -9,7 +7,7 @@ export function ModFiles({ modId }: { modId: number }) {
 
 	return (
 		<FlatList
-			contentContainerStyle={{ paddingTop: 55, padding: 10 }}
+			contentContainerStyle={{ paddingTop: 55, padding: 10, display: 'flex', rowGap: 10 }}
 			data={files}
 			renderItem={({
 				item: {
@@ -21,12 +19,29 @@ export function ModFiles({ modId }: { modId: number }) {
 					fileLength,
 					gameVersions,
 				},
-			}) => (
-				<View
-					style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', columnGap: 10 }}
-				>
-					<Text style={{ color: '#ffffff' }}>{displayName}</Text>
-					<Button
+			}) => {
+				const downloadResumable = FileSystem.createDownloadResumable(
+					downloadUrl,
+					FileSystem.documentDirectory + fileName
+				)
+				return (
+					<View
+						style={{
+							display: 'flex',
+							flexDirection: 'row',
+							alignItems: 'center',
+							columnGap: 10,
+						}}
+					>
+						<Text
+							onPress={async () =>
+								await FileSystem.downloadAsync(downloadUrl, FileSystem.documentDirectory + fileName)
+							}
+							style={{ color: '#ffffff' }}
+						>
+							{displayName}
+						</Text>
+						{/* <Button
 						variant="ghost"
 						onPress={() => {
 							FileSystem.downloadAsync(downloadUrl, FileSystem.documentDirectory + fileName)
@@ -39,9 +54,10 @@ export function ModFiles({ modId }: { modId: number }) {
 						<Text style={{ color: '#ffffff' }} key={v}>
 							{v}
 						</Text>
-					))}
-				</View>
-			)}
+					))} */}
+					</View>
+				)
+			}}
 		/>
 	)
 }

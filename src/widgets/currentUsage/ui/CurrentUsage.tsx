@@ -1,14 +1,19 @@
 import { Progress } from '@/shared/ui/progress'
 // import { Skeleton } from '@/shared/ui/skeleton'
+import { useFetchServer } from '@/shared/queries/server'
+import { $serverHash } from '@/shared/store'
+import { useStore } from 'effector-react'
 import { FlatList, Text, View } from 'react-native'
 import { useFetchServerCurrentUsage } from '../queries'
 
 export function CurrentUsage() {
+	const serverHash = useStore($serverHash)
+	const { data: server } = useFetchServer(serverHash)
 	const { data: currentUsage, isLoading } = useFetchServerCurrentUsage()
 
 	if (isLoading) return <></>
 
-	if (!currentUsage) return null
+	if (!currentUsage || !server?.isOnline) return null
 
 	return (
 		<View

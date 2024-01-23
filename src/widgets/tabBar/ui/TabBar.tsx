@@ -1,4 +1,5 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
+import { Href, router } from 'expo-router'
 import { LayoutList, PlusCircle, UserCircle } from 'lucide-react-native'
 import { TouchableOpacity, View } from 'react-native'
 
@@ -24,9 +25,7 @@ export function TabBar({ state, descriptors, navigation, insets }: BottomTabBarP
 				<TouchableOpacity
 					key={route.key}
 					onPress={() => {
-						if (Object.hasOwn(route.params || {}, 'serverHash') && route.name === 'servers')
-							navigation.goBack()
-						else navigation.navigate(route.name)
+						router.push(`/(tabs)/${route.name}` as Href<string>)
 					}}
 				>
 					{icons[i]}

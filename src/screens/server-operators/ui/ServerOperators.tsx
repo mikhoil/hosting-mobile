@@ -19,7 +19,7 @@ export function ServerOperators() {
 			<PlayersList
 				title="Операторы"
 				isLoading={isLoading}
-				players={operators}
+				players={operators?.content}
 				addDataPlaceholder={'Введите никнейм игрока'}
 			/>
 		</View>

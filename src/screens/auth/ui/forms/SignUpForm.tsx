@@ -26,7 +26,7 @@ export function SignUpForm() {
 		if (success) {
 			reset()
 
-			router.push(ServerUrls.servers() as Href<string>)
+			router.replace(ServerUrls.servers() as Href<string>)
 		}
 	}
 

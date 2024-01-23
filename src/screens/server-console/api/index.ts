@@ -2,14 +2,12 @@ import { axiosAuth } from '@/shared/api/auth'
 import { ServerApiUrls } from '@/shared/api/urls'
 
 export async function getServerConsole(serverHash: string) {
-	const logs = (await axiosAuth()).post<{
+	return (await axiosAuth()).post<{
 		Logs: {
 			Id: number
 			Record: string
 		}[]
 	}>(ServerApiUrls.getServerLogs(), { isLastLogs: false, page: null, gameServerHash: serverHash })
-
-	return logs
 }
 
 export async function sendCommandToServerConsole(gameServerHash: string, message: string) {

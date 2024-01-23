@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native'
+import { CreateServer } from '@/screens/create-server'
+import { View } from 'react-native'
 
 export default function CreateServerScreen() {
 	return (
-		<View>
-			<Text>Создать сервер</Text>
+		<View style={{ padding: 12 }}>
+			<CreateServer />
 		</View>
 	)
 }

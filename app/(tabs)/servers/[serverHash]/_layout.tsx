@@ -4,32 +4,19 @@ import { $serverHash } from '@/shared/store'
 import { Button } from '@/shared/ui/button'
 import { DrawerToggleButton } from '@react-navigation/drawer'
 import { useStore } from 'effector-react'
-import { Href, useRouter } from 'expo-router'
+import { Href, useRouter, useSegments } from 'expo-router'
 import { Drawer } from 'expo-router/drawer'
-import { useNavigation } from 'expo-router/src/useNavigation'
 import { ChevronLeft } from 'lucide-react-native'
-import { useEffect } from 'react'
 
 export default function ServerLayout() {
 	const router = useRouter()
-	const navigation = useNavigation()
+	const segments = useSegments()
 	const serverHash = useStore($serverHash)
 	const { data: server } = useFetchServer(serverHash)
 
-	useEffect(() => {
-		navigation.addListener('beforeRemove', (e) => {
-			e.preventDefault()
-			router.push('/(tabs)/servers/')
-		})
-		return () =>
-			navigation.removeListener('beforeRemove', (e) => {
-				e.preventDefault()
-				router.push('/(tabs)/servers/')
-			})
-	}, [navigation])
-
 	return (
 		<Drawer
+			backBehavior="history"
 			screenOptions={{
 				unmountOnBlur: true,
 				drawerContentStyle: { backgroundColor: '#171C17' },
@@ -39,16 +26,24 @@ export default function ServerLayout() {
 				headerTitleAlign: 'center',
 				headerTitleStyle: { color: '#ffffff' },
 				headerLeft: () => (
-					<Button variant="ghost" onPress={() => router.back()} style={{ paddingLeft: 10 }}>
+					<Button
+						variant="ghost"
+						onPress={() => {
+							if (segments.length === 3) router.push('/(tabs)/servers/')
+							else router.back()
+						}}
+						style={{ paddingLeft: 10 }}
+					>
 						<ChevronLeft color={'#ffffff'} />
 					</Button>
 				),
 				headerRight: () => <DrawerToggleButton tintColor="#ffffff" />,
 				headerStyle: { backgroundColor: '#171C17' },
-				title: server?.gameServerName,
+				title: server?.gameServerName ?? '...',
 				sceneContainerStyle: {
 					backgroundColor: '#232923',
 				},
+				headerShown: !!serverHash,
 			}}
 		>
 			<Drawer.Screen

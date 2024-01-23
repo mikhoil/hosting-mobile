@@ -1,0 +1,1 @@
+export const pollingBannedIpsInterval = 5000

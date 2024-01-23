@@ -9,6 +9,12 @@ export function useStopServerMutation() {
 
 	return useMutation({
 		mutationFn: stopServer,
+		onMutate: () => {
+			queryClient.cancelQueries({
+				queryKey: [ReactQueryKeys.serverMainInfo],
+				fetchStatus: 'idle',
+			})
+		},
 		onSettled: async (response, error) => {
 			if (response?.success) {
 				await queryClient.invalidateQueries([ReactQueryKeys.server])
