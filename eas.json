@@ -6,7 +6,8 @@
 			},
 			"env": {
 				"EXPO_PUBLIC_SERVER_URL": "http://5.35.10.121:9000"
-			}
+			},
+			"distribution": "internal"
 		},
 		"preview2": {
 			"android": {
@@ -14,7 +15,10 @@
 			}
 		},
 		"preview3": {
-			"developmentClient": true
+			"developmentClient": true,
+			"android": {
+				"buildType": "apk"
+			}
 		},
 		"preview4": {
 			"distribution": "internal"
