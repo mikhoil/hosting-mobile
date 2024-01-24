@@ -1,5 +1,5 @@
 {
-  "expo": {
+	"expo": {
 		"name": "hosting-mobile",
 		"slug": "hosting-mobile",
 		"version": "1.0.0",
@@ -24,11 +24,11 @@
 			}
 		},
 		"android": {
+			"usesCleartextTraffic": true,
 			"adaptiveIcon": {
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.anonymous.hostingmobile",
-			"permissions": ["android.permission.ACCESS_NETWORK_STATE"]
+			"package": "com.anonymous.hostingmobile"
 		},
 		"web": {
 			"bundler": "metro",
