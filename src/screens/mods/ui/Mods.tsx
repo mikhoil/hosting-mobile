@@ -12,6 +12,7 @@ import {
 	WorldsCompilation,
 } from '@/widgets/modsCompilation'
 
+import { ModsCart } from '@/features/modsCart'
 import { CForgeModClassType, russianModClasses } from '@/shared/config/curse-forge'
 import { ModUrls } from '@/shared/routes/urls'
 import { Button } from '@/shared/ui/button'
@@ -26,9 +27,16 @@ export function ServerMods() {
 	const { data: groupedCategories } = useGroupedCategories()
 
 	return (
-		<View style={{ display: 'flex', rowGap: 10, paddingBottom: 170, padding: 10 }}>
+		<View style={{ display: 'flex', rowGap: 10, paddingBottom: 170, padding: 10, width: '100%' }}>
 			<ServerHeader />
-			<View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+			<View
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					width: '100%',
+				}}
+			>
 				<Text style={{ color: '#ffffff', fontSize: 20 }}>Подборки модов</Text>
 				<Popover
 					enableShadow
@@ -107,7 +115,18 @@ export function ServerMods() {
 					</Button>
 				</Popover>
 			</View>
-			<SearchMods />
+			<View
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					flexWrap: 'nowrap',
+					gap: 10,
+					width: '100%',
+				}}
+			>
+				<SearchMods />
+				<ModsCart />
+			</View>
 			<ScrollView style={{ display: 'flex', rowGap: 15 }}>
 				<ModsCompilation />
 				<ModpacksCompilation />

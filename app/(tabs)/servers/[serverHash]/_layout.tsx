@@ -6,13 +6,32 @@ import { DrawerToggleButton } from '@react-navigation/drawer'
 import { useStore } from 'effector-react'
 import { Href, useRouter, useSegments } from 'expo-router'
 import { Drawer } from 'expo-router/drawer'
+import { useNavigation } from 'expo-router/src/useNavigation'
 import { ChevronLeft } from 'lucide-react-native'
+import { useEffect } from 'react'
 
 export default function ServerLayout() {
 	const router = useRouter()
 	const segments = useSegments()
+	const navigation = useNavigation()
+
 	const serverHash = useStore($serverHash)
 	const { data: server } = useFetchServer(serverHash)
+	const navigation = useNavigation()
+
+	useEffect(() => {
+		navigation.addListener('beforeRemove', () => {
+			if (segments.length === 3) router.push('/(tabs)/servers/')
+			else router.back()
+		})
+	}, [navigation])
+
+	useEffect(() => {
+		navigation.addListener('beforeRemove', () => {
+			if (segments.length === 3) router.push('/(tabs)/servers/')
+			else router.back()
+		})
+	}, [navigation])
 
 	return (
 		<Drawer
