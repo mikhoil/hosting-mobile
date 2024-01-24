@@ -17,6 +17,14 @@ export default function ServerLayout() {
 
 	const serverHash = useStore($serverHash)
 	const { data: server } = useFetchServer(serverHash)
+	const navigation = useNavigation()
+
+	useEffect(() => {
+		navigation.addListener('beforeRemove', () => {
+			if (segments.length === 3) router.push('/(tabs)/servers/')
+			else router.back()
+		})
+	}, [navigation])
 
 	useEffect(() => {
 		navigation.addListener('beforeRemove', () => {

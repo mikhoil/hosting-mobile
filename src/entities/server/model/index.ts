@@ -32,6 +32,7 @@ export function useServerMainInfo(): {
 			maxPlayers: mainInfo.properties.maxplayers,
 			version: mainInfo.properties.version,
 			map: mainInfo.properties.map,
+			game: mainInfo.properties.game_id,
 			software: null,
 		},
 		onlinePlayers: mainInfo.onlinePlayers,
