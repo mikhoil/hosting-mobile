@@ -25,9 +25,11 @@ export function ServerConsole() {
 
 	if (!serverConsole || !server?.isOnline)
 		return (
-			<View>
-				<Text style={{ color: '#ffffff' }}>Здесь пока пусто</Text>
-				<Text style={{ color: '#ffffff' }}>Запустите сервер для просмотра логов</Text>
+			<View style={{ padding: 12 }}>
+				<Text style={{ color: '#ffffff', textAlign: 'center' }}>Здесь пока пусто</Text>
+				<Text style={{ color: '#ffffff', textAlign: 'center' }}>
+					Запустите сервер для просмотра логов
+				</Text>
 			</View>
 		)
 

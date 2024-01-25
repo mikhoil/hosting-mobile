@@ -27,17 +27,19 @@ export function ServerMods() {
 	const { data: groupedCategories } = useGroupedCategories()
 
 	return (
-		<View style={{ display: 'flex', rowGap: 10, paddingBottom: 170, padding: 10, width: '100%' }}>
+		<View style={{ display: 'flex', rowGap: 10, paddingBottom: 180, padding: 10, width: '100%' }}>
 			<ServerHeader />
+			{/* <Text style={{ color: '#ffffff', fontSize: 20, textAlign: 'center' }}>Подборки модов</Text> */}
 			<View
 				style={{
 					display: 'flex',
 					flexDirection: 'row',
 					justifyContent: 'space-between',
+					alignItems: 'center',
 					width: '100%',
 				}}
 			>
-				<Text style={{ color: '#ffffff', fontSize: 20 }}>Подборки модов</Text>
+				<ModsCart />
 				<Popover
 					enableShadow
 					edgeMargins={20}
@@ -125,7 +127,6 @@ export function ServerMods() {
 				}}
 			>
 				<SearchMods />
-				<ModsCart />
 			</View>
 			<ScrollView style={{ display: 'flex', rowGap: 15 }}>
 				<ModsCompilation />

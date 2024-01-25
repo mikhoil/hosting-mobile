@@ -19,7 +19,7 @@ export function ModsSearch() {
 			style={{
 				display: 'flex',
 				rowGap: 10,
-				paddingBottom: 300,
+				paddingBottom: 270,
 				padding: 10,
 			}}
 		>

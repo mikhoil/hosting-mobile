@@ -48,11 +48,11 @@ export function useAuthProvider(): AuthContextType {
 	}
 
 	const handleLogout = async (request: ILogoutRequest) => {
-		const { status } = await logout(request)
+		await logout(request)
 
-		if (status !== 200) {
-			return
-		}
+		// if (status !== 200) {
+		// 	return
+		// }
 
 		setUser(null)
 		setAuthToken(null)

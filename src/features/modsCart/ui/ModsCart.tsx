@@ -36,11 +36,20 @@ export function ModsCart() {
 		<>
 			<Button
 				variant="ghost"
+				size="sm"
 				onPress={() => setVisible(true)}
-				style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					columnGap: 5,
+					alignItems: 'center',
+					borderRadius: 10,
+					borderColor: '#cccccc',
+					borderWidth: 0.3,
+				}}
 			>
 				<Package size={16} color={'#ffffff'} />
-				<Text style={{ color: '#ffffff' }}>Корзина модов</Text>
+				<Text style={{ fontWeight: '600', color: '#ffffff' }}>Корзина модов</Text>
 			</Button>
 			<AlertDialog
 				visible={visible}
@@ -69,6 +78,7 @@ export function ModsCart() {
 								flexDirection: 'row',
 								alignItems: 'center',
 								justifyContent: 'space-between',
+								columnGap: 5,
 							}}
 						>
 							<Image
@@ -85,8 +95,9 @@ export function ModsCart() {
 							/>
 							<Link
 								href={ModUrls.mod(serverHash!, mod.id) as Href<string>}
-								style={{ color: '#c68d2a' }}
+								style={{ color: '#c68d2a', flex: 1 }}
 								onPress={() => setVisible(false)}
+								numberOfLines={1}
 							>
 								{mod.name}
 							</Link>
